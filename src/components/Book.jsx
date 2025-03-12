@@ -8,7 +8,7 @@ const Book = () => {
     { name: "Book A Layover", icon: <CiPlane /> },
   ];
   return (
-    <div className="sm:px-[100px] lg:px-[20%] p-3 flex items-center justify-center flex-col gap-6  pt-[70px]">
+    <div className="sm:px-[100px] lg:px-[20%] p-3 flex items-center justify-center flex-col gap-6 pt-[70px]">
       <div className=" w-[70%] text-center flex flex-col gap-5">
         <h2 className="text-3xl font-bold text-center">
           What&#39;s Your{" "}

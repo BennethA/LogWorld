@@ -2,32 +2,37 @@ import React from "react";
 import { BsInstagram, BsYoutube } from "react-icons/bs";
 import { CiPlane } from "react-icons/ci";
 import { FaFacebook } from "react-icons/fa";
-import { FaX } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
-  const aboutUs = ["About", "Services", "Company's Integrity", "FAQ"];
-
-  const contactUs = [
-    "9300 SE Band Ave Orego, United States",
-    "+88445-0776-777",
+  const aboutUs = [
+    { link: "#about", title: "About" },
+    { link: "#packages", title: "Services" },
+    { link: "#blogs", title: "Company's Integrity" },
+    { link: "#whyUs", title: "FAQ" },
   ];
 
-  const socials = [<FaFacebook />, <FaX />, <BsInstagram />, <BsYoutube />];
+  const contactUs = [
+    "Pokuasi, Greater Accra, Ghana",
+    "0539540191",
+  ];
+
+  const socials = [<FaFacebook />, <FaXTwitter />, <BsInstagram />, <BsYoutube />];
   return (
     <div className="flex flex-col gap-7 bg-black sm:px-[70px] p-3 lg:px-[15%]">
-      <div className="text-xl font-bold flex items-center gap-2 text-[#87b2f1]">
+      <div className="text-2xl font-bold flex items-center gap-2 text-[#87b2f1]">
         <CiPlane className="-rotate-[30deg] text-2xl" /> LogWorld
       </div>
       <div className="flex flex-wrap gap-5 justify-between w-full">
         <div>
           <h3 className="text-[#87b2f1] font-black">About Us</h3>
           {aboutUs.map((about, index) => (
-            <li
+            <a href={about.link}
               key={index}
               className="text-gray-500 flex cursor-pointer hover:opacity-80"
             >
-              {about}
-            </li>
+              {about.title}
+            </a>
           ))}
         </div>
         <div>

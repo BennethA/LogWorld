@@ -10,6 +10,7 @@ import Type from "./components/Type";
 import Guidings from "./components/Guidings";
 import Save from "./components/Save";
 import Footer from "./components/Footer";
+import ContactUs from "./components/Contact-Us";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       <Type />
       <Guidings />
       <Save/>
+      <ContactUs/>
       <Footer/>
     </div>
   );

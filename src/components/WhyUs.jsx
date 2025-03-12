@@ -28,7 +28,10 @@ const whyUs = () => {
     },
   ];
   return (
-    <div className="flex items-center p-3 sm:px-[100px] justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%]">
+    <div
+      id="whyUs"
+      className="flex items-center p-3 sm:px-[100px] justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%]"
+    >
       <div className="sm:w-[45%]">
         <img src={world} alt="World" className="h-full w-full object-cover" />
       </div>

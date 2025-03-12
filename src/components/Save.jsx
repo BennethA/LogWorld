@@ -12,11 +12,11 @@ const Save = () => {
           Sign up and receive exclusive deals
         </p>
       </div>
-      <div className="bg-gray-50 w-full p-4 rounded flex justify-between">
+      <div className="bg-gray-50 w-full p-4 rounded flex justify-between gap-3">
         <input
           type="email"
           placeholder="Enter your email address"
-          className="bg-transparent text-gray-500 font-bold w-fit"
+          className="bg-transparent text-gray-500 font-bold w-full px-2"
         />
         <button className="bg-black text-[#87b2f1] font-bold cursor-pointer p-3 rounded hover:opacity-80">
           Subscribe
