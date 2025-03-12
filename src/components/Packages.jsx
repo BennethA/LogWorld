@@ -1,10 +1,17 @@
 import React from 'react'
 import { BsStarFill } from 'react-icons/bs';
+import pack1 from "../assets/images/pack1.jpg";
+import pack2 from "../assets/images/pack2.jpg";
+import pack3 from "../assets/images/pack3.jpg";
+import pack4 from "../assets/images/pack4.jpg";
+import pack5 from "../assets/images/pack5.jpg";
+import pack6 from "../assets/images/pack6.jpg";
+import pack7 from "../assets/images/pack7.jpg";
 
 const packages = () => {
   const packages = [
     {
-      img: "src/assets/pack1.jpg",
+      img: pack1,
       title: "Villa Mabela",
       subtitle: "3 Days 4 Nights",
       rate: "4.2",
@@ -12,7 +19,7 @@ const packages = () => {
       price: "3,330",
     },
     {
-      img: "src/assets/pack2.jpg",
+      img: pack2,
       title: "Maroc Beach",
       subtitle: "3 Days 4 Nights",
       rate: "4.7",
@@ -20,7 +27,7 @@ const packages = () => {
       price: "3,230",
     },
     {
-      img: "src/assets/pack3.jpg",
+      img: pack3,
       title: "Villa Menoca",
       subtitle: "3 Days 4 Nights",
       rate: "4.9",
@@ -28,7 +35,7 @@ const packages = () => {
       price: "3,030",
     },
     {
-      img: "src/assets/pack4.jpg",
+      img: pack4,
       title: "Santa Mabela",
       subtitle: "3 Days 4 Nights",
       rate: "4.1",
@@ -36,7 +43,7 @@ const packages = () => {
       price: "4,330",
     },
     {
-      img: "src/assets/pack5.jpg",
+      img: pack5,
       title: "Madrid Gucho",
       subtitle: "3 Days 4 Nights",
       rate: "4.2",
@@ -44,7 +51,7 @@ const packages = () => {
       price: "2,330",
     },
     {
-      img: "src/assets/pack6.jpg",
+      img: pack6,
       title: "Spaaane Villa",
       subtitle: "3 Days 4 Nights",
       rate: "4.5",
@@ -53,7 +60,7 @@ const packages = () => {
     },
 
     {
-      img: "src/assets/pack7.jpg",
+      img: pack7,
       title: "Sane Wealla",
       subtitle: "3 Days 4 Nights",
       rate: "4.5",
@@ -64,7 +71,7 @@ const packages = () => {
   return (
     <div
       id="packages"
-      className="flex items-center justify-center p-3 sm:px-[100px] flex-col gap-5  pt-[70px]"
+      className="flex items-center justify-center p-3 sm:px-[100px] lg:px-[20%] flex-col gap-5 pt-[70px]"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
         <h2 className="text-3xl font-bold text-center">

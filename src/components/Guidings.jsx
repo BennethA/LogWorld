@@ -1,9 +1,13 @@
 import React from "react";
+import fishing from "../assets/images/fishing.jpg";
+import mountain from "../assets/images/mountain.jpg";
+import dessert from "../assets/images/dessert.jpg";
+import jetski from "../assets/images/jetski.jpg";
 
 const Guidings = () => {
   const guiding = [
     {
-      img: "src/assets/mountain.jpg",
+      img: mountain,
       title:
         "The true adventure of travelencomposses the thrill of Mountain Climbing",
       description:
@@ -12,14 +16,14 @@ const Guidings = () => {
     },
 
     {
-      img: "src/assets/dessert.jpg",
+      img: dessert,
       title: "The ultimate adventure awaits with a thrilling desert safari.",
       description:
         "Sunt soluta corrupti, accusamus pariatur rerum debitis, consequuntur saepe numquam placeat voluptas iure.",
       date: "May 11, 2025",
     },
     {
-      img: "src/assets/jetski.jpg",
+      img: jetski,
       title:
         "Get ready for the ultimate thrill with an exhilarating jetski adventure on open water!",
       description:
@@ -30,7 +34,7 @@ const Guidings = () => {
   return (
     <div
       id="blogs"
-      className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] pt-[70px]"
+      className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] pt-[70px] lg:px-[20%]"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
         <h2 className="text-3xl font-bold text-center">
@@ -43,9 +47,9 @@ const Guidings = () => {
           rejuvenating wellfare getaways.
         </p>
       </div>
-      <div className="flex flex-wrap gap-6 sm:justify-between justify-center">
+      <div className="flex flex-wrap gap-6 sm:justify-between justify-between">
         <div className="flex flex-col gap-4 md:w-[45%] pr-5">
-          <img src="src/assets/fishing.jpg" alt="fishing" className="rounded" />
+          <img src={fishing} alt="fishing" className="rounded" />
           <div className="flex justify-between items-center">
             <h3 className="font-bold">
               The real travel experience includes fishing.

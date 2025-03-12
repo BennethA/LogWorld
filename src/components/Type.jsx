@@ -33,7 +33,7 @@ const Type = () => {
     },
   ];
   return (
-    <div className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] bg-white pt-[70px]">
+    <div className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] bg-white pt-[70px] lg:px-[20%]">
       <h1 className=" w-[70%] text-center text-3xl font-bold">
         Tour <span className="text-[#87b2f1] italic">Type</span>
       </h1>

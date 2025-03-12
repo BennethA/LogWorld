@@ -1,10 +1,14 @@
 import React from 'react'
 import { BiAlarm } from 'react-icons/bi';
+import hotel1 from "../assets/images/hotel1.jpg";
+import hotel2 from "../assets/images/hotel2.jpg";
+import hotel3 from "../assets/images/hotel3.jpg";
+import hotel4 from "../assets/images/hotel4.jpg";
 
 const Popular = () => {
   const tours = [
     {
-      img: "src/assets/hotel1.jpg",
+      img: hotel1,
       title: "Sheraton",
       price: "3,700",
       days: "4 Days 5 Nights",
@@ -12,7 +16,7 @@ const Popular = () => {
       reviews: "123",
     },
     {
-      img: "src/assets/hotel2.jpg",
+      img: hotel2,
       title: "Hilton Beach",
       price: "2,700",
       days: "3 Days 4 Nights",
@@ -20,7 +24,7 @@ const Popular = () => {
       reviews: "120",
     },
     {
-      img: "src/assets/hotel3.jpg",
+      img: hotel3,
       title: "Levantine",
       price: "4,700",
       days: "5 Days 6 Nights",
@@ -28,7 +32,7 @@ const Popular = () => {
       reviews: "220",
     },
     {
-      img: "src/assets/hotel4.jpg",
+      img: hotel4,
       title: "Exquiree",
       price: "3,800",
       days: "4 Days 5 Nights",
@@ -38,7 +42,7 @@ const Popular = () => {
   ];
   return (
     <div>
-      <div className="flex items-center justify-center p-3 sm:px-[100px] flex-col gap-5 pt-[70px]">
+      <div className="flex items-center justify-center p-3 sm:px-[100px] flex-col gap-5 pt-[70px] lg:px-[20%]">
         <div className=" w-[70%] text-center flex flex-col gap-5">
           <h2 className="text-3xl font-bold text-center">
             Popular <span className="text-[#87b2f1] italic">Tours</span>

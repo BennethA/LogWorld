@@ -1,14 +1,16 @@
 import React from 'react'
+import airbnb from "../assets/images/airbnb.png"
+import qatar from "../assets/images/qatar.png"
+import bookings from "../assets/images/bookings.png"
+import visa from "../assets/images/visa.png";
 
 const Hero = () => {
-  const sponsors = [
-    "src/assets/airbnb.png",
-    "src/assets/qatar.png",
-    "src/assets/bookings.png",
-    "src/assets/visa.png",
-  ];
+  const sponsors = [airbnb, qatar, bookings, visa];
   return (
-    <div id='home' className="pt-[100px] flex items-center justify-center text-center flex-col gap-5 sm:px-6 p-3">
+    <div
+      id="home"
+      className="pt-[100px] flex items-center justify-center text-center flex-col gap-5 sm:px-6 p-3 lg:px-[20%]"
+    >
       <p className="text-4xl w-[75%] leading-[40px] font-extrabold">
         Book your <span className="text-[#87b2f1] italic">Dream Trips</span>,
         Explore the <span className="text-[#87b2f1] italic">World</span>,
@@ -26,7 +28,7 @@ const Hero = () => {
       <div className="flex items-center justify-center flex-wrap gap-4">
         {sponsors.map((sponsor, index) => (
           <img
-            className="max-w-[130px]"
+            className="max-w-[130px] hover:opacity-80 cursor-pointer"
             key={index}
             src={sponsor}
             alt={sponsor}

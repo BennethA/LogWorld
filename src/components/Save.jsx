@@ -2,7 +2,7 @@ import React from "react";
 
 const Save = () => {
   return (
-    <div className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] bg-white">
+    <div className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] bg-white lg:px-[20%]">
       <div className=" w-[70%] text-center flex flex-col gap-5">
         <h2 className="text-3xl font-bold text-center">
           Save <span className="text-[#87b2f1] italic">Time</span>, Save{" "}

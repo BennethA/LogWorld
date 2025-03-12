@@ -15,7 +15,7 @@ const Navigation = () => {
     { link: "#blogs", title: "Blog" },
   ];
   return (
-    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[70px] p-3">
+    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[70px] p-3 lg:px-[15%]">
       <div className="flex gap-2 font-extrabold text-[#87b2f1]">
         <CiPlane className="-rotate-[30deg] text-2xl" /> LogWorld
       </div>
@@ -37,7 +37,8 @@ const Navigation = () => {
           }`}
         >
           {pages.map((page, index) => (
-            <a href={page.link}
+            <a
+              href={page.link}
               className="flex active::bg-blue-100 py-3 px-2 active:bg-blue-100 hover:bg-blue-100 rounded"
               key={index}
             >
