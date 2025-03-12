@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import { BiMenu, BiX } from "react-icons/bi";
+import { CiPlane } from "react-icons/ci";
+
+const Navigation = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleOpenMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+  const pages = [
+    { link: "#home", title: "Home" },
+    { link: "#about", title: "About" },
+    { link: "#packages", title: "Tour Packages" },
+    { link: "#blogs", title: "Blog" },
+  ];
+  return (
+    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[70px] p-3">
+      <div className="flex gap-2 font-extrabold text-[#87b2f1]">
+        <CiPlane className="-rotate-[30deg] text-2xl" /> LogWorld
+      </div>
+      <nav className="justify-between gap-5 hidden md:flex">
+        {pages.map((page, index) => (
+          <a
+            href={page.link}
+            className="flex active:bg-blue-100 hover:bg-blue-100 px-2 rounded py-3"
+            key={index}
+          >
+            {page.title}
+          </a>
+        ))}
+      </nav>
+      {
+        <div
+          className={`fixed left-0 bottom-0 gap-1 top-[70px] flex sm:hidden flex-col bg-white w-[60%] p-3 transition-all duration-500 translate-x-[-100%] ${
+            openMenu ? "translate-x-[0%]" : ""
+          }`}
+        >
+          {pages.map((page, index) => (
+            <a href={page.link}
+              className="flex active::bg-blue-100 py-3 px-2 active:bg-blue-100 hover:bg-blue-100 rounded"
+              key={index}
+            >
+              {page.title}
+            </a>
+          ))}
+
+          <div className="bg-black text-white rounded p-2">Contact Us</div>
+        </div>
+      }
+
+      <div className="bg-black text-white rounded p-2 md:flex hidden">
+        Contact Us
+      </div>
+      <div
+        onClick={handleOpenMenu}
+        className={`md:hidden text-2xl cursor-pointer hover:opacity-80`}
+      >
+        {openMenu ? <BiX /> : <BiMenu />}
+      </div>
+    </div>
+  );
+};
+
+export default Navigation;
