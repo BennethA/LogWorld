@@ -53,7 +53,7 @@ const Type = () => {
           </div>
         ))}
       </div>
-      <button className="py-2 px-6 border-2 rounded border-[#87b2f1] text-[#87b2f1] font-bold flex gap-3 items-center flex-wrap hover:bg-gray-300 cursor-pointer">
+      <button className="py-2 px-6 border-2 rounded border-[#87b2f1] text-[#87b2f1] font-bold flex gap-3 items-center flex-wrap hover:bg-gray-300 active:bg-gray-300 cursor-pointer">
         View All <FcRight />
       </button>
     </div>

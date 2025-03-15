@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
 import { CiPlane } from "react-icons/ci";
 
-const Navigation = () => {
+const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
 
   const handleOpenMenu = () => {
@@ -15,10 +15,10 @@ const Navigation = () => {
     { link: "#blogs", title: "Blog" },
   ];
   return (
-    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[5%] p-3 lg:px-[13%]">
-      <div className="flex gap-2 font-extrabold text-[#87b2f1] text-2xl items-center">
+    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[5%] p-3 lg:px-[13%] text-lg">
+      <a href="#home" className="flex gap-2 font-extrabold text-[#87b2f1] text-2xl items-center">
         <CiPlane className="-rotate-[30deg] text-3xl" /> LogWorld
-      </div>
+      </a>
       <nav className="justify-between gap-5 hidden md:flex">
         {pages.map((page, index) => (
           <a
@@ -73,4 +73,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Header;

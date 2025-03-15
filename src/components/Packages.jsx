@@ -74,14 +74,10 @@ const Packages = () => {
       id="packages"
       className="flex items-center justify-center p-3 sm:px-[100px] lg:px-[20%] flex-col gap-5 pt-[70px]"
     >
-      <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title first="All Inclusive" second="Packages" />
-
-        <p className=" text-gray-500 font-semibold text-sm leading-4">
-          Explore all inclusive packages that turn your travel into a seemless
+      <div className=" w-[70%] text-center">
+        <Title first="All Inclusive" second="Packages" description="Explore all inclusive packages that turn your travel into a seemless
           adventure. Enjoy great deals on city tours, desert safaris, water
-          sports, amusement parks and wellness retreats-all in one package.
-        </p>
+          sports, amusement parks and wellness retreats-all in one package."/>
       </div>
       <div className="flex overflow-x-scroll gap-6 w-full p-1">
         {packages.map((item, index) => (
@@ -93,12 +89,12 @@ const Packages = () => {
               <img
                 src={item.img}
                 alt={item.img}
-                className="w-full object-cover h-full rounded"
+                className="w-full object-cover h-full rounded hover:scale-95 active:scale-95 tours"
               />
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between font-bold">
-                <p>{item.title}</p>
+                <p className="text-lg">{item.title}</p>
                 <p className="flex items-center gap-1">
                   <BsStarFill className="text-[#87b2f1]" /> {item.rate}
                 </p>
@@ -116,7 +112,7 @@ const Packages = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-black text-[#87b2f1] w-full py-2 rounded hover:opacity-80 font-bold cursor-pointer">
+            <button className="bg-black text-[#87b2f1] w-full py-2 rounded hover:opacity-80 font-bold cursor-pointer text-lg">
               See Offer
             </button>
           </div>

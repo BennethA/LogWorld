@@ -34,14 +34,16 @@ const WhyUs = () => {
       className="flex items-center p-3 sm:px-[100px] sm:justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%] justify-center"
     >
       <div className="sm:w-[45%] w-[80%]">
-        <img src={world} alt="World" className="h-ful w-ful object-cove" />
+        <img
+          src={world}
+          alt="World"
+          className="h-full w-full hover:scale-95 active:scale-95 tours"
+        />
       </div>
       <div className="sm:w-[45%] text-center flex flex-col gap-5">
-        <Title first="" second="Why Choose Us" />
-        <p className=" text-gray-500 font-semibold text-sm leading-4">
+        <Title first="" second="Why Choose Us" description="
           Enjoy different experience in every place you visit and discover new
-          and affordable adventures of course.
-        </p>
+          and affordable adventures of course."/>
         <div className="flex gap-3 flex-col">
           {reasons.map((reason, index) => (
             <button
@@ -52,7 +54,7 @@ const WhyUs = () => {
                 {reason.icon}
               </div>
               <div>
-                <h4 className="font-bold text-start">{reason.title}</h4>
+                <h4 className="font-bold text-start text-lg">{reason.title}</h4>
                 <p className="text-gray-400 font-semibold text-sm text-start">
                   {reason.description}
                 </p>

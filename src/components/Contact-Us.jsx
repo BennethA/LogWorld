@@ -16,7 +16,7 @@ const ContactUs = () => {
           e.preventDefault();
           console.log(contactUs);
         }}
-        className="w-full rounded flex justify-between gap-3 flex-wrap"
+        className="w-full rounded flex justify-between gap-3 flex-wrap text-lg"
       >
         <input
           type="email"
@@ -40,7 +40,7 @@ const ContactUs = () => {
         <div className="flex justify-end items-end w-full">
           <button
             type="submit"
-            className="bg-black text-[#87b2f1] font-bold cursor-pointer p-3 rounded hover:opacity-80"
+            className="bg-black text-[#87b2f1] font-bold cursor-pointer p-3 rounded hover:opacity-80 active:opacity-80"
           >
             Send Us A Message
           </button>

@@ -37,26 +37,33 @@ const Guidings = () => {
       id="blogs"
       className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] pt-[70px] lg:px-[20%]"
     >
-      <div className="w-[70%] text-center flex flex-col gap-5">
-        <Title first="Blogs & Travel" second="Guidings" />
-
-        <p className=" text-gray-500 font-semibold text-sm leading-4">
+      <div className="w-[70%] text-center">
+        <Title
+          first="Blogs & Travel"
+          second="Guidings"
+          description="
           The world is brimming with thrilling experiences and activities
           tailored for ecery type of traveler. Explore fantastic offers on urban
           excursions, desert excapades, acquatic adventures, theme parks, and
-          rejuvenating wellfare getaways.
-        </p>
+          rejuvenating wellfare getaways."
+        />
       </div>
       <div className="flex flex-wrap gap-6 sm:justify-between justify-between">
         <div className="flex flex-col gap-4 md:w-[45%] pr-5">
-          <img src={fishing} alt="fishing" className="rounded" />
+          <img
+            src={fishing}
+            alt="fishing"
+            className="rounded hover:scale-100 scale-95 active:scale-95 tours"
+          />
           <div className="flex justify-between items-center">
-            <h3 className="font-bold">
+            <h3 className="font-bold leading-4 text-lg md:text-xl lg:text-2xl">
               The real travel experience includes fishing.
             </h3>
-            <p className="text-sm font-bold text-gray-500">March 5, 2025</p>
+            <p className="text-sm font-bold text-gray-500 md:text-lg lg:text-xl">
+              March 5, 2025
+            </p>
           </div>
-          <p className="text-sm font-bold text-gray-500">
+          <p className="text-sm font-bold text-gray-500 md:text-lg leading-[18px]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem,
             velit. A, provident harum! Nesciunt earum, natus excepturi similique
             facilis laboriosam.
@@ -69,8 +76,10 @@ const Guidings = () => {
               className="flex justify-between items-center cursor-pointer overflow-hidden gap-[5px]"
             >
               <div className="flex flex-col gap-2 w-[40%] font-bold">
-                <h3 className="leading-[15px]">{guide.title}</h3>
-                <p className="text-gray-500 text-sm leading-[15px]">
+                <h3 className="leading-[18px] text-lg md:text-xl lg:text-2xl">
+                  {guide.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-[15px] md:text-lg">
                   {guide.description}
                 </p>
                 <p className="text-gray-500 text-sm">{guide.date}</p>
@@ -79,7 +88,7 @@ const Guidings = () => {
                 <img
                   src={guide.img}
                   alt={guide.img}
-                  className="w-full object-cover h-full rounded"
+                  className="w-full object-cover h-full rounded hover:scale-95 active:scale-95 tours"
                 />
               </div>
             </div>

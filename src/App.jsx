@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Book from "./components/Book";
 import Destinations from "./components/Destinations";
@@ -11,12 +11,14 @@ import Guidings from "./components/Guidings";
 import Save from "./components/Save";
 import Footer from "./components/Footer";
 import ContactUs from "./components/Contact-Us";
+import AboutUs from "./components/AboutUs";
 
 const App = () => {
   return (
     <div className="bg-gray-200">
-      <Navigation />
+      <Header />
       <Hero />
+      <AboutUs />
       <Book />
       <Destinations />
       <Packages />
@@ -24,9 +26,9 @@ const App = () => {
       <Popular />
       <Type />
       <Guidings />
-      <Save/>
-      <ContactUs/>
-      <Footer/>
+      <Save />
+      <ContactUs />
+      <Footer />
     </div>
   );
 };

@@ -44,16 +44,16 @@ const Popular = () => {
   return (
     <div>
       <div className="flex items-center justify-center p-3 sm:px-[100px] flex-col gap-5 pt-[70px] lg:px-[20%]">
-        <div className=" w-[70%] text-center flex flex-col gap-5">
-          <Title first="Popular" second="Tours" />
-
-          <p className=" text-gray-500 font-semibold text-sm leading-4">
-            Duscover our popular all-in-one tour packages that makes your travel
+        <div className=" w-[70%] text-center">
+          <Title
+            first="Popular"
+            second="Tours"
+            description="Discover our popular all-in-one tour packages that makes your travel
             effortless! Enjoy amazing deals on city tours, thrilling safaries,
-            exciting water sports and relaxing wellness retreats-all included!
-          </p>
+            exciting water sports and relaxing wellness retreats-all included!"
+          />
         </div>
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex flex-col gap-1 max-w-[800px]">
           {tours.map((tour, index) => (
             <div
               key={index}
@@ -63,14 +63,14 @@ const Popular = () => {
                 <img
                   src={tour.img}
                   alt={tour.img}
-                  className="w-full object-cover h-full rounded"
+                  className="w-full object-cover h-full rounded hover:scale-95 tours active:scale-95"
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <button className="p-2 bg-blue-400 hover:opacity-80 rounded font-bold cursor-pointer">
+                <button className="p-2 bg-blue-400 hover:opacity-80 active:opacity-80 rounded font-bold cursor-pointer text-lg">
                   High Rate
                 </button>
-                <h3 className="font-extrabold">{tour.title}</h3>
+                <h3 className="font-extrabold text-lg">{tour.title}</h3>
                 <p className="font-bold">
                   ${tour.price}
                   <span className="font-normal text-gray-500 text-sm">
@@ -92,7 +92,7 @@ const Popular = () => {
                     reviews
                   </span>
                 </div>
-                <button className="p-2 hover:bg-black border-2 border-[#87b2f1] hover:border-transparent font-bold rounded text-[#87b2f1] w-full hover:opacity-80 cursor-pointer">
+                <button className="p-2 border-2 border-[#87b2f1] font-bold rounded text-[#87b2f1] w-full hover:opacity-80 active:opacity-80 cursor-pointer text-lg">
                   Book Tour
                 </button>
               </div>

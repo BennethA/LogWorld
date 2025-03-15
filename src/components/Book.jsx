@@ -121,12 +121,9 @@ const Book = () => {
       className="sm:px-[100px] lg:px-[20%] p-3 flex items-center justify-center flex-col gap-6 pt-[70px] font-bold"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title first="What's Your" second="Destination"/>
-        <p className=" text-gray-500 font-semibold leading-4">
-          Experience world-class services and renowned hospitality when you book
+        <Title first="What's Your" second="Destination" description="Experience world-class services and renowned hospitality when you book
           your trip to anywhere wuth our Partnered Airway, the award winning
-          Airlines offer a journey of luxery comfort and exceptional care!
-        </p>
+          Airlines offer a journey of luxery comfort and exceptional care!"/>
       </div>
       <div className="bg-slate-950 w-full mb-3 rounded overflow-hidden">
         <div className="flex justify-between">
@@ -134,7 +131,7 @@ const Book = () => {
             <button
               key={option.name}
               onClick={() => setBookType(option.name)}
-              className={`w-full p-2 cursor-pointer  ${
+              className={`w-full hover:opacity-80 active:opacity-80 p-2 cursor-pointer text-lg ${
                 bookType === option.name
                   ? "text-[#87b2f1] bg-black"
                   : "text-white bg-slate-800"
@@ -288,7 +285,7 @@ const Book = () => {
               </div>
               {errors && <div className="text-red-500">{errors}</div>}
               <div type="submit" className="flex justify-end">
-                <button className="text-[#87b2f1] font-semibold hover:border-[#87b2f1] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer">
+                <button className="text-[#87b2f1] font-semibold hover:border-[#87b2f1] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer text-lg">
                   Search Flights
                 </button>
               </div>

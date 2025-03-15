@@ -30,14 +30,10 @@ const Destinations = () => {
       className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[70px]"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title first="Popular" second="Destinations" />
-
-        <p className=" text-gray-500 font-semibold text-sm leading-4">
-          Filled with exciting experinces and activities, the world has
+        <Title first="Popular" second="Destinations" description="Filled with exciting experinces and activities, the world has
           something for every traveler. Discover amazing deals on city tours,
           desert adventure, water sports, amusement parks and refreshing
-          wellness retreats.
-        </p>
+          wellness retreats."/>
       </div>
       <div className="flex overflow-x-auto">
         {places.map((place, index) => (
@@ -45,7 +41,7 @@ const Destinations = () => {
             key={index}
             src={place}
             alt={place}
-            className="rounded h-[350px] w-auto hover:scale-100 cursor-pointer transition-a scale-95 tours"
+            className="rounded h-[350px] w-auto hover:scale-100 active:scale-100 cursor-pointer scale-95 tours"
           />
         ))}
       </div>
