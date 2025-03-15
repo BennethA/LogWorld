@@ -15,15 +15,18 @@ const Header = () => {
     { link: "#blogs", title: "Blog" },
   ];
   return (
-    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[5%] p-3 lg:px-[13%] text-lg">
-      <a href="#home" className="flex gap-2 font-extrabold text-[#87b2f1] text-2xl items-center">
+    <div className="flex justify-between gap-4 items-center font-bold bg-[#000020] fixed z-20 right-0 left-0 top-0 h-[60px] sm:px-[5%] p-3 lg:px-[13%] text-lg md:text-xl">
+      <a
+        href="#home"
+        className="flex font-extrabold text-[#87b2f1] text-2xl items-center"
+      >
         <CiPlane className="-rotate-[30deg] text-3xl" /> LogWorld
       </a>
       <nav className="justify-between gap-5 hidden md:flex">
         {pages.map((page, index) => (
           <a
             href={page.link}
-            className="flex active:bg-blue-100 hover:bg-blue-100 px-2 rounded py-3"
+            className="flex active:bg-blue-100 hover:bg-blue-100 hover:text-black active:text-black p-2 rounded"
             key={index}
           >
             {page.title}
@@ -32,7 +35,7 @@ const Header = () => {
       </nav>
       {
         <div
-          className={`fixed left-0 bottom-0 gap-1 top-[70px] flex md:hidden flex-col bg-white w-[60%] p-3 transition-all duration-500 translate-x-[-100%] ${
+          className={`fixed left-0 bottom-0 gap-1 top-[60px] flex md:hidden flex-col bg-[#01012c] w-[60%] p-3 transition-all duration-500 translate-x-[-100%] ${
             openMenu ? "translate-x-[0%]" : ""
           }`}
         >
@@ -40,7 +43,7 @@ const Header = () => {
             <a
               onClick={handleOpenMenu}
               href={page.link}
-              className="flex active::bg-blue-100 py-3 px-2 active:bg-blue-100 hover:bg-blue-100 rounded"
+              className="flex p-2 hover:bg-blue-100 hover:text-black active:text-black rounded"
               key={index}
             >
               {page.title}
@@ -50,7 +53,7 @@ const Header = () => {
           <a
             href="#contact"
             onClick={handleOpenMenu}
-            className="bg-black hover:opacity-80 active:opacity-80 text-white rounded p-2"
+            className="bg-[#87b2f1] hover:opacity-80 active:opacity-80 text-white rounded p-2"
           >
             Contact Us
           </a>
@@ -59,7 +62,7 @@ const Header = () => {
 
       <a
         href="#contact"
-        className="bg-black text-white rounded p-2 md:flex hidden hover:opacity-80 active:opacity-80"
+        className="bg-[#87b2f1] text-white rounded p-2 md:flex hidden hover:opacity-80 active:opacity-80"
       >
         Contact Us
       </a>

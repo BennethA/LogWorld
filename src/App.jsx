@@ -15,7 +15,7 @@ import AboutUs from "./components/AboutUs";
 
 const App = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-[#01012c] text-white">
       <Header />
       <Hero />
       <AboutUs />

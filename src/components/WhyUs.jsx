@@ -10,45 +10,53 @@ const WhyUs = () => {
     {
       icon: <CiPlane />,
       title: "Flight Ticket ",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      description:
+        "Book your flights with us and enjoy competitive prices, flexible booking options, and personalized customer support.",
     },
     {
       icon: <BiCar />,
       title: "Car Transfers",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      description:
+        "We offer reliable and comfortable car transfer services to and from airports, hotels, and other destinations, ensuring a stress-free travel experience.",
     },
     {
       icon: <BiHotel />,
       title: "Accomodation",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      description:
+        "Choose from our carefully curated selection of hotels, resorts, and vacation rentals, each offering a unique blend of comfort, amenities, and local character.",
     },
     {
       icon: <LuLuggage />,
       title: "Packaged Tour",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      description:
+        "Let us take care of every detail with our expertly crafted packaged tours, featuring handpicked accommodations, guided excursions, and authentic local experiences.",
     },
   ];
   return (
     <div
       id="whyUs"
-      className="flex items-center p-3 sm:px-[100px] sm:justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%] justify-center"
+      className="flex items-center pb-5 sm:px-[100px] sm:justify-between gap-3 flex-wrap bg-[#000020] pt-[60px] lg:px-[20%] justify-center"
     >
-      <div className="sm:w-[45%] w-[80%]">
+      <div className="sm:w-[45%]">
         <img
           src={world}
           alt="World"
           className="h-full w-full hover:scale-95 active:scale-95 tours"
         />
       </div>
-      <div className="sm:w-[45%] text-center flex flex-col gap-5">
-        <Title first="" second="Why Choose Us" description="
+      <div className="sm:w-[45%] text-center flex flex-col gap-5 items-center">
+        <Title
+          first=""
+          second="Why Choose Us"
+          description="
           Enjoy different experience in every place you visit and discover new
-          and affordable adventures of course."/>
+          and affordable adventures of course."
+        />
         <div className="flex gap-3 flex-col">
           {reasons.map((reason, index) => (
             <button
               key={index}
-              className="flex gap-4 items-center bg-[#1f1f1f] rounded px-4 py-2 hover:hover:opacity-80 text-white cursor-pointer"
+              className="flex gap-4 items-center bg-[#000020] rounded px-4 py-2"
             >
               <div className="bg-white p-1 text-3xl rounded text-black">
                 {reason.icon}

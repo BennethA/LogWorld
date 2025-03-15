@@ -37,7 +37,7 @@ const Footer = () => {
     },
   ];
   return (
-    <div className="flex flex-col gap-7 bg-black sm:px-[70px] p-3 lg:px-[15%]">
+    <div className="flex flex-col gap-7 bg-[#000020] sm:px-[5%] p-3 lg:px-[13%]">
       <div className="flex items-start">
         <a
           href="#home"
@@ -46,49 +46,51 @@ const Footer = () => {
           <CiPlane className="-rotate-[30deg] text-2xl" /> LogWorld
         </a>
       </div>
-      <div className="flex flex-wrap gap-5 justify-between w-full">
-        <div>
-          <h3 className="text-[#87b2f1] font-extrabold text-[17px]">
-            About Us
-          </h3>
-          {aboutUs.map((about, index) => (
-            <a
-              href={about.link}
-              key={index}
-              className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
-            >
-              {about.title}
-            </a>
-          ))}
-        </div>
-        <div>
-          <h3 className="text-[#87b2f1] font-extrabold text-[17px]">
-            Locate Us
-          </h3>
-          {locateUs.map((locate, index) => (
-            <a
-              href={locate.link}
-              key={index}
-              className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
-            >
-              {locate.name}
-            </a>
-          ))}
-        </div>
-        <div className="flex flex-col gap-1">
-          <h3 className="text-[#87b2f1] font-extrabold text-[17px]">
-            Reach Us
-          </h3>
-          <div className="flex gap-2 flex-wrap cursor-pointer">
-            {reachUs.map((reach, index) => (
+      <div className="w-full">
+        <div className="flex flex-wrap gap-5 justify-between max-w-[600px]">
+          <div>
+            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+              About Us
+            </h3>
+            {aboutUs.map((about, index) => (
               <a
-                href={reach.link}
+                href={about.link}
                 key={index}
-                className="text-[#87b2f1] flex hover:opacity-80 text-[18px] rounded-full p-1 hover:bg-[#87b2f1] hover:text-white active:bg-[#87b2f1] active:text-white"
+                className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
               >
-                {reach.icon}
+                {about.title}
               </a>
             ))}
+          </div>
+          <div>
+            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+              Locate Us
+            </h3>
+            {locateUs.map((locate, index) => (
+              <a
+                href={locate.link}
+                key={index}
+                className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
+              >
+                {locate.name}
+              </a>
+            ))}
+          </div>
+          <div className="flex flex-col gap-1">
+            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+              Reach Us
+            </h3>
+            <div className="flex gap-2 flex-wrap cursor-pointer">
+              {reachUs.map((reach, index) => (
+                <a
+                  href={reach.link}
+                  key={index}
+                  className="text-[#87b2f1] flex hover:opacity-80 text-[18px] rounded-full p-1 hover:bg-[#87b2f1] hover:text-white active:bg-[#87b2f1] active:text-white"
+                >
+                  {reach.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

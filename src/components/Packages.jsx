@@ -72,18 +72,20 @@ const Packages = () => {
   return (
     <div
       id="packages"
-      className="flex items-center justify-center p-3 sm:px-[100px] lg:px-[20%] flex-col gap-5 pt-[70px]"
+      className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] pb-5"
     >
-      <div className=" w-[70%] text-center">
-        <Title first="All Inclusive" second="Packages" description="Explore all inclusive packages that turn your travel into a seemless
+      <Title
+        first="All Inclusive"
+        second="Packages"
+        description="Explore all inclusive packages that turn your travel into a seemless
           adventure. Enjoy great deals on city tours, desert safaris, water
-          sports, amusement parks and wellness retreats-all in one package."/>
-      </div>
+          sports, amusement parks and wellness retreats-all in one package."
+      />
       <div className="flex overflow-x-scroll gap-6 w-full p-1">
         {packages.map((item, index) => (
           <div
             key={index}
-            className="w-[200px] hover:bg-gray-100 overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-gray-500 flex flex-col"
+            className="w-[200px] hover:bg-[#000020] active:bg-[#000020] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-black flex flex-col"
           >
             <div className="flex items-center object-cover h-[150px]">
               <img
@@ -112,7 +114,7 @@ const Packages = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-black text-[#87b2f1] w-full py-2 rounded hover:opacity-80 font-bold cursor-pointer text-lg">
+            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full py-2 rounded font-bold cursor-pointer text-lg">
               See Offer
             </button>
           </div>

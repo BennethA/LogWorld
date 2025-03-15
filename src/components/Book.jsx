@@ -6,6 +6,11 @@ import { Country, City } from "country-state-city";
 import Title from "./Title";
 
 const Book = () => {
+
+  const handleKeyDown = (e) => {
+e.preventDefault()
+  }
+
   const [countries, setCountries] = useState([]);
 
   const [fromCities, setFromCities] = useState([]);
@@ -118,13 +123,15 @@ const Book = () => {
   return (
     <div
       id="book"
-      className="sm:px-[100px] lg:px-[20%] p-3 flex items-center justify-center flex-col gap-6 pt-[70px] font-bold"
+      className="flex items-center justify-center px-3 pb-5 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px]"
     >
-      <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title first="What's Your" second="Destination" description="Experience world-class services and renowned hospitality when you book
+      <Title
+        first="What's Your"
+        second="Destination"
+        description="Experience world-class services and renowned hospitality when you book
           your trip to anywhere wuth our Partnered Airway, the award winning
-          Airlines offer a journey of luxery comfort and exceptional care!"/>
-      </div>
+          Airlines offer a journey of luxery comfort and exceptional care!"
+      />
       <div className="bg-slate-950 w-full mb-3 rounded overflow-hidden">
         <div className="flex justify-between">
           {options.map((option) => (
@@ -162,8 +169,8 @@ const Book = () => {
               </div>
               <div className="bg-gray-700 p-3 border-2 border-gray-400 rounded flex items-center gap-7 gap-y-3 flex-wrap w-full">
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p>From:</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="w-[30%]">From:</p>
+                  <div className="flex flex-wrap gap-2 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
                       value={setBookFlight.fromCountry}
@@ -199,8 +206,8 @@ const Book = () => {
                   </div>
                 </div>
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p>To:</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="w-[30%]">To:</p>
+                  <div className="flex flex-wrap gap-2 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
                       value={setBookFlight.toCountry}
@@ -240,9 +247,10 @@ const Book = () => {
                     key={index}
                     className="flex gap-7 items-center justify-between w-full max-w-[400px]"
                   >
-                    <p>{flight.name}:</p>
+                    <p className="w-[30%]">{flight.name}:</p>
                     <input
                       required
+                      onKeyDown={handleKeyDown}
                       min={flight.min}
                       max={flight.max}
                       type={flight.type}
@@ -254,9 +262,10 @@ const Book = () => {
                 ))}
                 {bookFlight.type === "Return" && (
                   <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                    <p>Return:</p>
+                    <p className="w-[30%]">Return:</p>
                     <input
                       required
+                      onKeyDown={handleKeyDown}
                       type="date"
                       value={bookFlight.return}
                       onChange={(e) =>
@@ -268,7 +277,7 @@ const Book = () => {
                   </div>
                 )}
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p>Passenger/s:</p>
+                  <p className="w-[30%]">Passenger/s:</p>
                   <input
                     required
                     type="number"
@@ -279,13 +288,13 @@ const Book = () => {
                         passengers: e.target.value,
                       })
                     }
-                    className="bg-transparent border-b px-1 outline-none w-full max-w-[170x]"
+                    className="bg-transparent border-b px-1 outline-none w-full max-w-[170x] appearance-none "
                   />
                 </div>
               </div>
               {errors && <div className="text-red-500">{errors}</div>}
               <div type="submit" className="flex justify-end">
-                <button className="text-[#87b2f1] font-semibold hover:border-[#87b2f1] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer text-lg">
+                <button className="text-[#87b2f1] font-semibold bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer text-lg">
                   Search Flights
                 </button>
               </div>

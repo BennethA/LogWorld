@@ -20,16 +20,18 @@ const AboutUs = () => {
     },
   ];
   return (
-    <div className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[70px]">
-      <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title
-          first="About"
-          second="Us"
-          description="At our company, we're passionate about helping businesses succeed. Our
+    <div
+      id="about"
+      className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] bg-[#000020] pb-5"
+    >
+      <Title
+        first="About"
+        second="Us"
+        description="At our company, we're passionate about helping businesses succeed. Our
         team of experts has years of experience in providing top-notch services
         that drive results."
-        />
-      </div>
+      />
+
       <div className="flex flex-wrap justify-center">
         {aboutUs.map((about, index) => (
           <div
@@ -37,13 +39,13 @@ const AboutUs = () => {
             className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 md:mb-0"
           >
             <h2 className="text-2xl font-bold mb-2">{about.title}</h2>
-            <p className="text-lg text-gray-600">{about.description}</p>
+            <p className="text-lg text-gray-400 leading-[20px]">{about.description}</p>
           </div>
         ))}
       </div>
       <a
         href="#contact"
-        className="p-3 px-8 bg-black hover:opacity-80 rounded text-[#87b2f1] italic font-bold text-lg"
+        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic font-bold text-lg"
       >
         Contact Us
       </a>

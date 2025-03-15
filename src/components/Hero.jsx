@@ -10,29 +10,29 @@ const Hero = () => {
   return (
     <div
       id="home"
-      className="pt-[100px] flex items-center justify-center text-center flex-col gap-5 sm:px-6 p-3 lg:px-[20%]"
+      className="pt-[100px] flex items-center justify-center text-center flex-col gap-5 sm:px-6 px-3 lg:px-[20%] relative"
     >
-      <div className="flex items-center flex-col">
-        <h2 className="text-4xl w-[75%] leading-[40px] font-extrabold">
-          Book your <span className="text-[#87b2f1] italic">Dream Trips</span>,
-          Explore the <span className="text-[#87b2f1] italic">World</span>,
-          Discover new <span className="text-[#87b2f1] italic">Adventures</span>
-          !
-        </h2>
-        <Title
-          description="We create unforgettable experience that transport you to breathtaking
+      <div className="h-[200px] w-[200px] rounded-full bg-[#2626a0] blur-2xl top-[50%] absolute"></div>
+      <Title
+        first="Book your"
+        second="Dream Trips, "
+        third="Explore the"
+        fourth="World, "
+        fifth="Discover new"
+        sixth="Adventures"
+        description="We create unforgettable experience that transport you to breathtaking
         locations where you can build meaningful connections with others and
         gather stories that you will trasure for a lifetime. Each journey is
         designed to immerse you in the beauty of the world!"
-        />
-      </div>
+      />
+
       <a
         href="#book"
-        className="p-3 px-8 bg-black hover:opacity-80 rounded text-[#87b2f1] italic font-bold text-lg"
+        className="p-3 px-8 bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic font-bold text-lg z-10"
       >
         Book A Trip
       </a>
-      <div className="flex items-center justify-center flex-wrap gap-4">
+      <div className="flex items-center justify-center flex-wrap gap-4 z-10">
         {sponsors.map((sponsor, index) => (
           <img
             className="max-w-[130px] hover:opacity-80 cursor-pointer hover:scale-95 active:scale-95 tours"

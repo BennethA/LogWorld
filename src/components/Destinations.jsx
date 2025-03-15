@@ -25,16 +25,15 @@ const Destinations = () => {
     tour10,
   ];
   return (
-    <div
-      id="about"
-      className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[70px]"
-    >
-      <div className=" w-[70%] text-center flex flex-col gap-5">
-        <Title first="Popular" second="Destinations" description="Filled with exciting experinces and activities, the world has
+    <div className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] bg-[#000020] pb-5">
+      <Title
+        first="Popular"
+        second="Destinations"
+        description="Filled with exciting experinces and activities, the world has
           something for every traveler. Discover amazing deals on city tours,
           desert adventure, water sports, amusement parks and refreshing
-          wellness retreats."/>
-      </div>
+          wellness retreats."
+      />
       <div className="flex overflow-x-auto">
         {places.map((place, index) => (
           <img
