@@ -1,9 +1,10 @@
-import React from 'react'
-import { BiAlarm } from 'react-icons/bi';
+import React from "react";
+import { BiAlarm } from "react-icons/bi";
 import hotel1 from "../assets/images/hotel1.jpg";
 import hotel2 from "../assets/images/hotel2.jpg";
 import hotel3 from "../assets/images/hotel3.jpg";
 import hotel4 from "../assets/images/hotel4.jpg";
+import Title from "./Title";
 
 const Popular = () => {
   const tours = [
@@ -44,9 +45,8 @@ const Popular = () => {
     <div>
       <div className="flex items-center justify-center p-3 sm:px-[100px] flex-col gap-5 pt-[70px] lg:px-[20%]">
         <div className=" w-[70%] text-center flex flex-col gap-5">
-          <h2 className="text-3xl font-bold text-center">
-            Popular <span className="text-[#87b2f1] italic">Tours</span>
-          </h2>
+          <Title first="Popular" second="Tours" />
+
           <p className=" text-gray-500 font-semibold text-sm leading-4">
             Duscover our popular all-in-one tour packages that makes your travel
             effortless! Enjoy amazing deals on city tours, thrilling safaries,
@@ -59,7 +59,7 @@ const Popular = () => {
               key={index}
               className="flex justify-between items-center border cursor-pointer border-gray-300 rounded overflow-hidden gap-4 hover:bg-white flex-wrap bg-slate-200 p-2"
             >
-              <div className="object-cover h-[180px] w-[180px]">
+              <div className="h-[180px] w-[180px] object-cover">
                 <img
                   src={tour.img}
                   alt={tour.img}
@@ -102,6 +102,6 @@ const Popular = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Popular
+export default Popular;

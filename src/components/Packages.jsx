@@ -1,5 +1,5 @@
-import React from 'react'
-import { BsStarFill } from 'react-icons/bs';
+import React from "react";
+import { BsStarFill } from "react-icons/bs";
 import pack1 from "../assets/images/pack1.jpg";
 import pack2 from "../assets/images/pack2.jpg";
 import pack3 from "../assets/images/pack3.jpg";
@@ -7,8 +7,9 @@ import pack4 from "../assets/images/pack4.jpg";
 import pack5 from "../assets/images/pack5.jpg";
 import pack6 from "../assets/images/pack6.jpg";
 import pack7 from "../assets/images/pack7.jpg";
+import Title from "./Title";
 
-const packages = () => {
+const Packages = () => {
   const packages = [
     {
       img: pack1,
@@ -74,20 +75,19 @@ const packages = () => {
       className="flex items-center justify-center p-3 sm:px-[100px] lg:px-[20%] flex-col gap-5 pt-[70px]"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
-        <h2 className="text-3xl font-bold text-center">
-          All Inclusive <span className="text-[#87b2f1] italic">Packages</span>
-        </h2>
+        <Title first="All Inclusive" second="Packages" />
+
         <p className=" text-gray-500 font-semibold text-sm leading-4">
           Explore all inclusive packages that turn your travel into a seemless
           adventure. Enjoy great deals on city tours, desert safaris, water
           sports, amusement parks and wellness retreats-all in one package.
         </p>
       </div>
-      <div className="flex overflow-x-scroll gap-6 w-full">
+      <div className="flex overflow-x-scroll gap-6 w-full p-1">
         {packages.map((item, index) => (
           <div
             key={index}
-            className="w-[200px] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-md shadow-neutral-700 flex flex-col"
+            className="w-[200px] hover:bg-gray-100 overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-gray-500 flex flex-col"
           >
             <div className="flex items-center object-cover h-[150px]">
               <img
@@ -124,6 +124,6 @@ const packages = () => {
       </div>
     </div>
   );
-}
+};
 
-export default packages
+export default Packages;

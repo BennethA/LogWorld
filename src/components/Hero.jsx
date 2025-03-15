@@ -1,7 +1,7 @@
-import React from 'react'
-import airbnb from "../assets/images/airbnb.png"
-import qatar from "../assets/images/qatar.png"
-import bookings from "../assets/images/bookings.png"
+import React from "react";
+import airbnb from "../assets/images/airbnb.png";
+import qatar from "../assets/images/qatar.png";
+import bookings from "../assets/images/bookings.png";
 import visa from "../assets/images/visa.png";
 
 const Hero = () => {
@@ -22,9 +22,12 @@ const Hero = () => {
         gather stories that you will trasure for a lifetime. Each journey is
         designed to immerse you in the beauty of the world!
       </p>
-      <button className="bg-black hover:opacity-80 rounded p-3 px-8 text-[#87b2f1] italic font-bold cursor-pointer">
+      <a
+        href="#book"
+        className="p-3 px-8 bg-black hover:opacity-80 rounded text-[#87b2f1] italic font-bold"
+      >
         Book A Trip
-      </button>
+      </a>
       <div className="flex items-center justify-center flex-wrap gap-4">
         {sponsors.map((sponsor, index) => (
           <img
@@ -37,6 +40,6 @@ const Hero = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Hero
+export default Hero;

@@ -15,7 +15,7 @@ const Navigation = () => {
     { link: "#blogs", title: "Blog" },
   ];
   return (
-    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[70px] p-3 lg:px-[15%]">
+    <div className="flex justify-between gap-4 items-center font-bold py-4 bg-white fixed z-10 right-0 left-0 top-0 h-[70px] sm:px-[5%] p-3 lg:px-[13%]">
       <div className="flex gap-2 font-extrabold text-[#87b2f1] text-2xl items-center">
         <CiPlane className="-rotate-[30deg] text-3xl" /> LogWorld
       </div>
@@ -38,6 +38,7 @@ const Navigation = () => {
         >
           {pages.map((page, index) => (
             <a
+              onClick={handleOpenMenu}
               href={page.link}
               className="flex active::bg-blue-100 py-3 px-2 active:bg-blue-100 hover:bg-blue-100 rounded"
               key={index}
@@ -46,11 +47,20 @@ const Navigation = () => {
             </a>
           ))}
 
-          <a href="#contact" className="bg-black text-white rounded p-2">Contact Us</a>
+          <a
+            href="#contact"
+            onClick={handleOpenMenu}
+            className="bg-black hover:opacity-80 active:opacity-80 text-white rounded p-2"
+          >
+            Contact Us
+          </a>
         </div>
       }
 
-      <a href="#contact" className="bg-black text-white rounded p-2 md:flex hidden">
+      <a
+        href="#contact"
+        className="bg-black text-white rounded p-2 md:flex hidden hover:opacity-80 active:opacity-80"
+      >
         Contact Us
       </a>
       <div

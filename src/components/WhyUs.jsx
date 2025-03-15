@@ -3,8 +3,9 @@ import { BiCar, BiHotel } from "react-icons/bi";
 import { CiPlane } from "react-icons/ci";
 import { LuLuggage } from "react-icons/lu";
 import world from "../assets/images/world.png";
+import Title from "./Title";
 
-const whyUs = () => {
+const WhyUs = () => {
   const reasons = [
     {
       icon: <CiPlane />,
@@ -30,15 +31,13 @@ const whyUs = () => {
   return (
     <div
       id="whyUs"
-      className="flex items-center p-3 sm:px-[100px] justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%]"
+      className="flex items-center p-3 sm:px-[100px] sm:justify-between gap-3 flex-wrap bg-black pt-[70px] lg:px-[20%] justify-center"
     >
-      <div className="sm:w-[45%]">
-        <img src={world} alt="World" className="h-full w-full object-cover" />
+      <div className="sm:w-[45%] w-[80%]">
+        <img src={world} alt="World" className="h-ful w-ful object-cove" />
       </div>
-      <div className=" sm:w-[45%] w-full text-center flex flex-col gap-5">
-        <h2 className="text-3xl font-bold text-center text-[#87b2f1]">
-          Why Choose Us
-        </h2>
+      <div className="sm:w-[45%] text-center flex flex-col gap-5">
+        <Title first="" second="Why Choose Us" />
         <p className=" text-gray-500 font-semibold text-sm leading-4">
           Enjoy different experience in every place you visit and discover new
           and affordable adventures of course.
@@ -49,12 +48,12 @@ const whyUs = () => {
               key={index}
               className="flex gap-4 items-center bg-[#1f1f1f] rounded px-4 py-2 hover:hover:opacity-80 text-white cursor-pointer"
             >
-              <div className="bg-white p-1 text-4xl rounded text-black">
+              <div className="bg-white p-1 text-3xl rounded text-black">
                 {reason.icon}
               </div>
-              <div className="flex flex-col items-start">
-                <h4 className="font-bold">{reason.title}</h4>
-                <p className="text-gray-400 font-semibold text-sm">
+              <div>
+                <h4 className="font-bold text-start">{reason.title}</h4>
+                <p className="text-gray-400 font-semibold text-sm text-start">
                   {reason.description}
                 </p>
               </div>
@@ -66,4 +65,4 @@ const whyUs = () => {
   );
 };
 
-export default whyUs;
+export default WhyUs;

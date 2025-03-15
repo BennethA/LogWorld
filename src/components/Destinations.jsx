@@ -9,6 +9,7 @@ import tour7 from "../assets/images/tour7.jpg";
 import tour8 from "../assets/images/tour8.jpg";
 import tour9 from "../assets/images/tour9.jpg";
 import tour10 from "../assets/images/tour10.jpg";
+import Title from "./Title";
 
 const Destinations = () => {
   const places = [
@@ -29,9 +30,8 @@ const Destinations = () => {
       className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[70px]"
     >
       <div className=" w-[70%] text-center flex flex-col gap-5">
-        <h2 className="text-3xl font-bold text-center">
-          Popular <span className="text-[#87b2f1] italic">Destination</span>
-        </h2>
+        <Title first="Popular" second="Destinations" />
+
         <p className=" text-gray-500 font-semibold text-sm leading-4">
           Filled with exciting experinces and activities, the world has
           something for every traveler. Discover amazing deals on city tours,
@@ -45,7 +45,7 @@ const Destinations = () => {
             key={index}
             src={place}
             alt={place}
-            className="m-1 rounded h-[350px] w-auto"
+            className="rounded h-[350px] w-auto hover:scale-100 cursor-pointer transition-a scale-95 tours"
           />
         ))}
       </div>

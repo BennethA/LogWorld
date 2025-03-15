@@ -3,6 +3,7 @@ import fishing from "../assets/images/fishing.jpg";
 import mountain from "../assets/images/mountain.jpg";
 import dessert from "../assets/images/dessert.jpg";
 import jetski from "../assets/images/jetski.jpg";
+import Title from "./Title";
 
 const Guidings = () => {
   const guiding = [
@@ -36,10 +37,9 @@ const Guidings = () => {
       id="blogs"
       className="flex items-center justify-center p-3 flex-col gap-5 sm:px-[100px] pt-[70px] lg:px-[20%]"
     >
-      <div className=" w-[70%] text-center flex flex-col gap-5">
-        <h2 className="text-3xl font-bold text-center">
-          Blogs & Travel <span className="text-[#87b2f1] italic">Guidings</span>
-        </h2>
+      <div className="w-[70%] text-center flex flex-col gap-5">
+        <Title first="Blogs & Travel" second="Guidings" />
+
         <p className=" text-gray-500 font-semibold text-sm leading-4">
           The world is brimming with thrilling experiences and activities
           tailored for ecery type of traveler. Explore fantastic offers on urban
@@ -66,20 +66,22 @@ const Guidings = () => {
           {guiding.map((guide, index) => (
             <div
               key={index}
-              className="flex justify-between items-center cursor-pointer overflow-hidden gap-[20px]"
+              className="flex justify-between items-center cursor-pointer overflow-hidden gap-[5px]"
             >
-              <div className="flex flex-col gap-3">
-                <h3 className="font-bold">{guide.title}</h3>
-                <p className="text-gray-500 text-sm font-bold">
+              <div className="flex flex-col gap-2 w-[40%] font-bold">
+                <h3 className="leading-[15px]">{guide.title}</h3>
+                <p className="text-gray-500 text-sm leading-[15px]">
                   {guide.description}
                 </p>
-                <p className="text-gray-500 text-sm font-bold">{guide.date}</p>
+                <p className="text-gray-500 text-sm">{guide.date}</p>
               </div>
-              <img
-                src={guide.img}
-                alt={guide.img}
-                className="w-[100px] rounded"
-              />
+              <div className="h-[180px] w-[60%] object-cover">
+                <img
+                  src={guide.img}
+                  alt={guide.img}
+                  className="w-full object-cover h-full rounded"
+                />
+              </div>
             </div>
           ))}
         </div>

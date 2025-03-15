@@ -11,3 +11,8 @@
   font-style: normal;
   font-family: "Prata", serif;
 }
+
+.tours {
+  transition: all;
+  transition-duration: 0.5s;
+}
