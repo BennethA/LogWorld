@@ -12,7 +12,7 @@ const Hero = () => {
       id="home"
       className="pt-[100px] flex items-center justify-center text-center flex-col gap-5 sm:px-6 px-3 lg:px-[20%] relative"
     >
-      <div className="h-[200px] w-[200px] rounded-full bg-[#2626a0] blur-2xl top-[50%] absolute"></div>
+      <div className="h-[200px] w-[200px] rounded-full bg-[#2626a0] blur-2xl top-[50%] bottom-1/2 absolute"></div>
       <Title
         first="Book your"
         second="Dream Trips, "
@@ -28,14 +28,14 @@ const Hero = () => {
 
       <a
         href="#book"
-        className="p-3 px-8 bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic font-bold text-lg z-10"
+        className="p-3 px-8 bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic md:text-lg md:font-bold z-10"
       >
         Book A Trip
       </a>
       <div className="flex items-center justify-center flex-wrap gap-4 z-10">
         {sponsors.map((sponsor, index) => (
           <img
-            className="max-w-[130px] hover:opacity-80 cursor-pointer hover:scale-95 active:scale-95 tours"
+            className="sm:max-w-[130px] max-w-[100px] hover:opacity-80 cursor-pointer hover:scale-95 active:scale-95 tours"
             key={index}
             src={sponsor}
             alt={sponsor}

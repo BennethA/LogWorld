@@ -58,12 +58,12 @@ const WhyUs = () => {
               key={index}
               className="flex gap-4 items-center bg-[#000020] rounded px-4 py-2"
             >
-              <div className="bg-white p-1 text-3xl rounded text-black">
+              <div className="bg-white p-1 text-3xl text-black rounded-full">
                 {reason.icon}
               </div>
               <div>
-                <h4 className="font-bold text-start text-lg">{reason.title}</h4>
-                <p className="text-gray-400 font-semibold text-sm text-start">
+                <h4 className="font-bold text-start md:text-lg">{reason.title}</h4>
+                <p className="text-gray-400 text-sm text-start md:font-bold">
                   {reason.description}
                 </p>
               </div>

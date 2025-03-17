@@ -38,14 +38,14 @@ const AboutUs = () => {
             key={index}
             className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 md:mb-0"
           >
-            <h2 className="text-2xl font-bold mb-2">{about.title}</h2>
-            <p className="text-lg text-gray-400 leading-[20px]">{about.description}</p>
+            <h2 className="text-xl md:text-2xl font-bold mb-2">{about.title}</h2>
+            <p className="text-gray-400 md:font-bold leading-[20px]">{about.description}</p>
           </div>
         ))}
       </div>
       <a
         href="#contact"
-        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic font-bold text-lg"
+        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic md:text-lg md:font-bold"
       >
         Contact Us
       </a>

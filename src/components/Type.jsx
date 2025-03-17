@@ -43,15 +43,15 @@ const Type = () => {
             className="border-2 border-gray-300 cursor-pointer p-5 rounded flex flex-col gap-2 items-center hover:text-black hover:shadow-xl hover:shadow-black"
           >
             <span className="text-3xl text-[#87b2f1]">{tour.img}</span>
-            <p className="text-gray-500 text-lg">{tour.title}</p>
-            <p className="text-gray-500 text-sm font-bold">
+            <p className="md:text-lg font-bold text-white">{tour.title}</p>
+            <p className="text-gray-500 md:text-lg">
               {tour.description}{" "}
-              <span className="text-[#87b2f1]">${tour.price} </span>
+              <span className="text-[#87b2f1] md:text-lg">${tour.price} </span>
             </p>
           </div>
         ))}
       </div>
-      <button className="py-2 px-6 border-2 rounded border-[#87b2f1] text-[#87b2f1] font-bold flex gap-3 items-center flex-wrap hover:bg-[#01012c] active:bg-[#01012c] cursor-pointer">
+      <button className="py-2 px-6 border-2 rounded border-[#87b2f1] text-[#87b2f1] flex gap-3 items-center flex-wrap hover:bg-[#01012c] active:bg-[#01012c] cursor-pointer md:font-bold md:text-lg">
         View All <FcRight />
       </button>
     </div>

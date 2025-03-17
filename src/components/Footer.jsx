@@ -41,9 +41,9 @@ const Footer = () => {
       <div className="flex items-start">
         <a
           href="#home"
-          className="text-2xl font-bold flex items-center gap-2 text-[#87b2f1]"
+          className="flex font-extrabold text-[#87b2f1] md:text-2xl text-xl items-center"
         >
-          <CiPlane className="-rotate-[30deg] text-2xl" /> LogWorld
+          <CiPlane className="-rotate-[30deg] text-2xl md:text-3xl" /> LogWorld
         </a>
       </div>
       <div className="w-full">
@@ -56,7 +56,7 @@ const Footer = () => {
               <a
                 href={about.link}
                 key={index}
-                className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
+                className="text-gray-400 flex cursor-pointer hover:opacity-80 md:text-lg font-bold md:font-normal"
               >
                 {about.title}
               </a>
@@ -70,7 +70,7 @@ const Footer = () => {
               <a
                 href={locate.link}
                 key={index}
-                className="text-gray-400 flex cursor-pointer hover:opacity-80 font-bold"
+                className="text-gray-400 flex cursor-pointer hover:opacity-80 md:text-lg font-bold md:font-normal"
               >
                 {locate.name}
               </a>
@@ -85,7 +85,7 @@ const Footer = () => {
                 <a
                   href={reach.link}
                   key={index}
-                  className="text-[#87b2f1] flex hover:opacity-80 text-[18px] rounded-full p-1 hover:bg-[#87b2f1] hover:text-white active:bg-[#87b2f1] active:text-white"
+                  className="text-[#87b2f1] flex hover:opacity-80 md:text-lg rounded-full p-1 hover:bg-[#87b2f1] hover:text-white active:bg-[#87b2f1] active:text-white"
                 >
                   {reach.icon}
                 </a>

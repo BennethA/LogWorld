@@ -17,18 +17,18 @@ const Save = () => {
           e.preventDefault();
           console.log(email);
         }}
-        className="bg-gray-50 w-full p-2 rounded flex justify-between gap-3 text-lg max-w-[600px]"
+        className="bg-gray-50 w-full p-2 rounded flex justify-between gap-3 md:text-lg font-bold max-w-[600px]"
       >
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email address"
-          className="bg-transparent text-gray-600 font-bold w-full px-2 py-2"
+          className="bg-transparent text-gray-600 w-full px-2 py-2"
         />
         <button
           type="submit"
-          className="bg-[#01012c] text-[#87b2f1] font-bold cursor-pointer px-3 rounded hover:bg-[#000020] active:bg-[#000020]"
+          className="bg-[#01012c] text-[#87b2f1] cursor-pointer px-3 rounded hover:bg-[#000020] active:bg-[#000020]"
         >
           Subscribe
         </button>

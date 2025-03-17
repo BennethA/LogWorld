@@ -14,7 +14,7 @@ const ContactUs = () => {
           e.preventDefault();
           console.log(contactUs);
         }}
-        className="w-full rounded flex items-center justify-between gap-3 flex-wrap text-lg  max-w-[600px]"
+        className="w-full rounded flex items-center justify-between gap-3 flex-wrap md:text-lg font-bold max-w-[600px]"
       >
         <input
           type="email"
@@ -23,7 +23,7 @@ const ContactUs = () => {
             setContactUs({ ...contactUs, email: e.target.value })
           }
           placeholder="Enter your email address"
-          className="bg-transparent text-gray-300 font-bold p-4 w-full rounded border-2 border-gray-400"
+          className="bg-transparent text-gray-300 p-4 w-full rounded border-2 border-gray-400"
         />
         <textarea
           name=""
@@ -32,13 +32,13 @@ const ContactUs = () => {
           onChange={(e) =>
             setContactUs({ ...contactUs, message: e.target.value })
           }
-          className="h-[200px] border-gray-300 border-2 p-4 font-bold w-full max-h-[200px] rounded"
+          className="h-[200px] border-gray-300 border-2 p-4 w-full max-h-[200px] rounded"
           placeholder="Enter your message here"
         ></textarea>
         <div className="flex justify-end items-end w-full">
           <button
             type="submit"
-            className="text-[#87b2f1] font-bold cursor-pointer p-3 rounded bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13]"
+            className="text-[#87b2f1] cursor-pointer p-3 rounded bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] md:font-bold md:text-lg"
           >
             Send Us A Message
           </button>

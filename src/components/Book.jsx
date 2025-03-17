@@ -138,7 +138,7 @@ e.preventDefault()
             <button
               key={option.name}
               onClick={() => setBookType(option.name)}
-              className={`w-full hover:opacity-80 active:opacity-80 p-2 cursor-pointer text-lg ${
+              className={`w-full hover:opacity-80 active:opacity-80 p-2 cursor-pointer md:text-lg font-bold ${
                 bookType === option.name
                   ? "text-[#87b2f1] bg-black"
                   : "text-white bg-slate-800"
@@ -163,13 +163,13 @@ e.preventDefault()
                       checked={bookFlight.type === flight.name}
                       onChange={handleFlightTypeChange}
                     />
-                    <p>{flight.name}</p>
+                    <p className="md:text-lg">{flight.name}</p>
                   </div>
                 ))}
               </div>
-              <div className="bg-gray-700 p-3 border-2 border-gray-400 rounded flex items-center gap-7 gap-y-3 flex-wrap w-full">
+              <div className="bg-[#01012c] p-3 border-2 border-gray-400 rounded flex items-center gap-7 gap-y-3 flex-wrap w-full">
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p className="w-[30%]">From:</p>
+                  <p className="w-[30%] md:text-lg">From:</p>
                   <div className="flex flex-wrap gap-2 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
@@ -181,7 +181,7 @@ e.preventDefault()
                           required
                           value={country.name}
                           key={country.name + country.stateCode}
-                          className="bg-gray-700"
+                          className="bg-[#01012c]"
                         >
                           {country.name}
                         </option>
@@ -197,7 +197,7 @@ e.preventDefault()
                           required
                           value={city.name}
                           key={city.name + city.stateCode}
-                          className="bg-gray-700"
+                          className="bg-[#01012c]"
                         >
                           {city.name}
                         </option>
@@ -206,7 +206,7 @@ e.preventDefault()
                   </div>
                 </div>
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p className="w-[30%]">To:</p>
+                  <p className="w-[30%] md:text-lg">To:</p>
                   <div className="flex flex-wrap gap-2 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
@@ -218,7 +218,7 @@ e.preventDefault()
                           required
                           value={country.name}
                           key={country.name + country.stateCode}
-                          className="bg-gray-700"
+                          className="bg-[#01012c]"
                         >
                           {country.name}
                         </option>
@@ -234,7 +234,7 @@ e.preventDefault()
                           required
                           value={city.name}
                           key={city.name + city.stateCode}
-                          className="bg-gray-700"
+                          className="bg-[#01012c]"
                         >
                           {city.name}
                         </option>
@@ -247,7 +247,7 @@ e.preventDefault()
                     key={index}
                     className="flex gap-7 items-center justify-between w-full max-w-[400px]"
                   >
-                    <p className="w-[30%]">{flight.name}:</p>
+                    <p className="w-[30%] md:text-lg">{flight.name}:</p>
                     <input
                       required
                       onKeyDown={handleKeyDown}
@@ -262,7 +262,7 @@ e.preventDefault()
                 ))}
                 {bookFlight.type === "Return" && (
                   <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                    <p className="w-[30%]">Return:</p>
+                    <p className="w-[30%] md:text-lg">Return:</p>
                     <input
                       required
                       onKeyDown={handleKeyDown}
@@ -277,7 +277,7 @@ e.preventDefault()
                   </div>
                 )}
                 <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
-                  <p className="w-[30%]">Passenger/s:</p>
+                  <p className="w-[30%] md:text-lg">Passenger/s:</p>
                   <input
                     required
                     type="number"
@@ -292,15 +292,17 @@ e.preventDefault()
                   />
                 </div>
               </div>
-              {errors && <div className="text-red-500">{errors}</div>}
+              {errors && (
+                <div className="text-red-500 md:text-lg">{errors}</div>
+              )}
               <div type="submit" className="flex justify-end">
-                <button className="text-[#87b2f1] font-semibold bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer text-lg">
+                <button className="text-[#87b2f1] bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer md:text-lg md:font-bold">
                   Search Flights
                 </button>
               </div>
             </form>
           ) : (
-            <div className="text-white flex gap-3 flex-col p-6">
+            <div className="text-white flex gap-3 flex-col p-6 md:text-lg">
               Book a layover
             </div>
           )}

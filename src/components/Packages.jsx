@@ -95,26 +95,22 @@ const Packages = () => {
               />
             </div>
             <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between font-bold">
-                <p className="text-lg">{item.title}</p>
+              <div className="flex items-center justify-between md:text-lg font-bold">
+                <p>{item.title}</p>
                 <p className="flex items-center gap-1">
                   <BsStarFill className="text-[#87b2f1]" /> {item.rate}
                 </p>
               </div>
-              <p className="text-gray-500 font-semibold">{item.subtitle}</p>
-              <div className="flex">
-                <s className="font-semibold text-gray-500 mr-2">
-                  ${item.discount}
-                </s>
-                <p className="font-extrabold ">
+              <p className="text-gray-400">{item.subtitle}</p>
+              <div className="flex items-center md:text-lg">
+                <p className="text-gray-400 mr-2">${item.discount}</p>
+                <p>
                   ${item.price}
-                  <span className="font-normal text-sm text-gray-500">
-                    per person
-                  </span>
+                  <span className="text-sm text-gray-400">per person</span>
                 </p>
               </div>
             </div>
-            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full py-2 rounded font-bold cursor-pointer text-lg">
+            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full py-2 rounded cursor-pointer md:text-lg md:font-bold">
               See Offer
             </button>
           </div>

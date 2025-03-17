@@ -65,32 +65,28 @@ const Popular = () => {
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <button className="p-2 bg-blue-400 hover:bg-[#000020] active:opacity-80 rounded font-bold cursor-pointer text-lg">
+                <button className="p-2 bg-blue-400 hover:bg-[#000020] active:opacity-80 rounded cursor-pointer md:text-lg md:font-bold">
                   High Rate
                 </button>
-                <h3 className="font-extrabold text-lg">{tour.title}</h3>
-                <p className="font-bold">
+                <h3 className="md:text-lg font-bold">{tour.title}</h3>
+                <p className="md:text-lg">
                   ${tour.price}
-                  <span className="font-normal text-gray-500 text-sm">
-                    per person
-                  </span>
+                  <span className="text-gray-400 text-sm">per person</span>
                 </p>
               </div>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-gray-500 font-bold">
+                <div className="flex items-center gap-2 text-gray-400 md:font-bold">
                   <p className="flex items-center gap-1">
                     <BiAlarm />
                     {tour.days}
                   </p>
                   <p>{tour.persons} persons</p>
                 </div>
-                <div className="flex items-center gap-1 font-bold">
+                <div className="flex items-center gap-1 md:font-bold">
                   <p>{tour.reviews} </p>
-                  <span className="font-bold text-sm text-gray-500">
-                    reviews
-                  </span>
+                  <p className="text-gray-400">reviews</p>
                 </div>
-                <button className="p-2 border-2 border-[#87b2f1] font-bold rounded text-[#87b2f1] w-full hover:bg-[#000020] active:bg-[#000020] cursor-pointer text-lg">
+                <button className="p-2 border-2 border-[#87b2f1] rounded text-[#87b2f1] w-full hover:bg-[#000020] active:bg-[#000020] cursor-pointer md:text-lg md:font-bold">
                   Book Tour
                 </button>
               </div>

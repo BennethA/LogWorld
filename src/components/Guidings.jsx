@@ -53,15 +53,13 @@ const Guidings = () => {
             alt="fishing"
             className="rounded hover:scale-100 scale-95 active:scale-95 tours"
           />
-          <div className="flex justify-between items-center">
-            <h3 className="font-bold leading-4 text-lg md:text-xl lg:text-2xl">
+          <div className="flex gap-1 justify-between items-center md:text-lg">
+            <h3 className="leading-4 font-bold">
               The real travel experience includes fishing.
             </h3>
-            <p className="text-sm font-bold text-gray-400">
-              March 5, 2025
-            </p>
+            <p className="text-gray-400 leading-[20px]">March 5, 2025</p>
           </div>
-          <p className="text-sm font-bold text-gray-400 md:text-lg leading-[18px]">
+          <p className="text-sm text-gray-400 md:text-lg leading-[18px]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem,
             velit. A, provident harum! Nesciunt earum, natus excepturi similique
             facilis laboriosam.
@@ -73,14 +71,14 @@ const Guidings = () => {
               key={index}
               className="flex justify-between items-center cursor-pointer overflow-hidden gap-[5px]"
             >
-              <div className="flex flex-col gap-2 w-[40%] font-bold">
-                <h3 className="leading-[18px] text-lg md:text-xl lg:text-2xl">
+              <div className="flex flex-col gap-2 w-[40%]">
+                <h3 className="leading-[18px] md:text-xl lg:text-2xl font-bold">
                   {guide.title}
                 </h3>
                 <p className="text-gray-400 text-sm leading-[15px] md:text-lg">
                   {guide.description}
                 </p>
-                <p className="text-gray-400 text-sm">{guide.date}</p>
+                <p className="text-gray-400 text-sm md:font-bold">{guide.date}</p>
               </div>
               <div className="h-[180px] w-[60%] object-cover">
                 <img
