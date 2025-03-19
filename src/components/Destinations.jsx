@@ -24,23 +24,21 @@ const Destinations = () => {
     tour9,
     tour10,
   ];
+
   return (
-    <div className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] bg-[#000020] pb-5">
+    <div className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8 bg-[#000020] flex-col gap-5">
       <Title
         first="Popular"
         second="Destinations"
-        description="Filled with exciting experinces and activities, the world has
-          something for every traveler. Discover amazing deals on city tours,
-          desert adventure, water sports, amusement parks and refreshing
-          wellness retreats."
+        description="Filled with exciting experiences and activities, the world has something for every traveler. Discover amazing deals on city tours, desert adventures, water sports, amusement parks, and refreshing wellness retreats."
       />
       <div className="flex overflow-x-auto">
         {places.map((place, index) => (
           <img
             key={index}
             src={place}
-            alt={place}
-            className="rounded h-[350px] w-auto hover:scale-100 active:scale-100 cursor-pointer scale-95 tours"
+            alt={`destination-${index}`}
+            className="rounded-lg m-2 h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] w-auto hover:scale-105 active:scale-100 cursor-pointer transition-transform duration-300 ease-in-out transform scale-95"
           />
         ))}
       </div>

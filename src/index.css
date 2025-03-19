@@ -6,6 +6,10 @@
   /* transition-duration: 0.1s; */
 }
 
+button {
+  cursor: pointer;
+}
+
 #prata-regular {
   font-weight: 400;
   font-style: normal;

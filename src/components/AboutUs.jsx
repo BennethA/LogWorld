@@ -6,46 +6,46 @@ const AboutUs = () => {
     {
       title: "Our Mission",
       description:
-        "Our mission is to provide innovative solutions that help businesses grow and thrive. We're committed to delivering exceptional service and support to our clients.",
+        "Our mission is to empower businesses by providing innovative solutions that fuel growth and success. We are dedicated to delivering exceptional service and personalized support to our clients.",
     },
     {
       title: "Our Values",
       description:
-        "We value integrity, creativity, and teamwork. We believe in fostering a culture of innovation and excellence, and we're dedicated to making a positive impact on our clients and our community.",
+        "We believe in the power of integrity, creativity, and collaboration. Our focus is on fostering a culture of innovation, excellence, and respect. We're committed to making a lasting positive impact on both our clients and the community.",
     },
     {
       title: "Our Team",
       description:
-        "Our team is comprised of experienced professionals who are passionate about what they do. We're dedicated to providing exceptional service and support to our clients, and we're always looking for new ways to improve and grow.",
+        "Our team is composed of passionate and skilled professionals who are experts in their respective fields. We work together to provide top-notch services and continually seek innovative ways to improve and exceed client expectations.",
     },
   ];
+
   return (
     <div
       id="about"
-      className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] bg-[#000020] pb-5"
+      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8 bg-[#000020] flex-col gap-5"
     >
       <Title
         first="About"
         second="Us"
-        description="At our company, we're passionate about helping businesses succeed. Our
-        team of experts has years of experience in providing top-notch services
-        that drive results."
+        description="At our company, we are driven by a passion to help businesses thrive. Our expert team provides top-tier services that deliver tangible results and foster long-term success."
       />
-
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center gap-4">
         {aboutUs.map((about, index) => (
           <div
             key={index}
-            className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 md:mb-0"
+            className="w-full sm:w-1/2 lg:w-1/3 mb-6 md:mb-0"
           >
-            <h2 className="text-xl md:text-2xl font-bold mb-2">{about.title}</h2>
-            <p className="text-gray-400 md:font-bold leading-[20px]">{about.description}</p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-white">
+              {about.title}
+            </h2>
+            <p className="text-gray-400 leading-6">{about.description}</p>
           </div>
         ))}
       </div>
       <a
         href="#contact"
-        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic md:text-lg md:font-bold"
+        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic text-lg font-bold transition-all"
       >
         Contact Us
       </a>

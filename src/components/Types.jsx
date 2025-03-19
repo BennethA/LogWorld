@@ -6,7 +6,7 @@ import { FcRight } from "react-icons/fc";
 import { MdMuseum } from "react-icons/md";
 import Title from "./Title";
 
-const Type = () => {
+const Types = () => {
   const tourTypes = [
     {
       img: <BiMapAlt />,
@@ -33,29 +33,30 @@ const Type = () => {
       price: "880.00",
     },
   ];
+
   return (
-    <div className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] bg-[#000020] pb-5">
+    <div className="bg-[#000020] flex flex-col items-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8">
       <Title first="Tour" second="Types" />
-      <div className=" flex gap-3 flex-wrap items-center justify-around">
+      <div className="flex flex-wrap gap-6 justify-center sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24">
         {tourTypes.map((tour, index) => (
           <div
             key={index}
-            className="border-2 border-gray-300 cursor-pointer p-5 rounded flex flex-col gap-2 items-center hover:text-black hover:shadow-xl hover:shadow-black"
+            className="w-full sm:w-[250px] md:w-[300px] p-6 bg-[#1a1a2d] border-2 border-gray-300 rounded-lg cursor-pointer flex flex-col items-center gap-4 hover:bg-[#01012c] hover:shadow-lg hover:shadow-black transition-all duration-300 ease-in-out"
           >
-            <span className="text-3xl text-[#87b2f1]">{tour.img}</span>
-            <p className="md:text-lg font-bold text-white">{tour.title}</p>
-            <p className="text-gray-500 md:text-lg">
+            <span className="text-4xl text-[#87b2f1]">{tour.img}</span>
+            <p className="text-xl font-semibold text-white">{tour.title}</p>
+            <p className="text-gray-400 text-lg">
               {tour.description}{" "}
-              <span className="text-[#87b2f1] md:text-lg">${tour.price} </span>
+              <span className="text-[#87b2f1] text-lg">${tour.price}</span>
             </p>
           </div>
         ))}
       </div>
-      <button className="py-2 px-6 border-2 rounded border-[#87b2f1] text-[#87b2f1] flex gap-3 items-center flex-wrap hover:bg-[#01012c] active:bg-[#01012c] cursor-pointer md:font-bold md:text-lg">
+      <button className="mt-8 py-3 px-8 border-2 border-[#87b2f1] rounded text-[#87b2f1] flex items-center gap-2 hover:bg-[#01012c] active:bg-[#01012c] transition-colors duration-300 ease-in-out md:text-lg font-semibold">
         View All <FcRight />
       </button>
     </div>
   );
 };
 
-export default Type;
+export default Types;

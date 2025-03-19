@@ -14,7 +14,7 @@ const Packages = () => {
     {
       img: pack1,
       title: "Villa Mabela",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.2",
       discount: "4,000",
       price: "3,330",
@@ -22,7 +22,7 @@ const Packages = () => {
     {
       img: pack2,
       title: "Maroc Beach",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.7",
       discount: "4,300",
       price: "3,230",
@@ -30,7 +30,7 @@ const Packages = () => {
     {
       img: pack3,
       title: "Villa Menoca",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.9",
       discount: "4,600",
       price: "3,030",
@@ -38,7 +38,7 @@ const Packages = () => {
     {
       img: pack4,
       title: "Santa Mabela",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.1",
       discount: "5,000",
       price: "4,330",
@@ -46,7 +46,7 @@ const Packages = () => {
     {
       img: pack5,
       title: "Madrid Gucho",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.2",
       discount: "3,000",
       price: "2,330",
@@ -54,44 +54,43 @@ const Packages = () => {
     {
       img: pack6,
       title: "Spaaane Villa",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.5",
       discount: "5,000",
       price: "4,330",
     },
-
     {
       img: pack7,
       title: "Sane Wealla",
-      subtitle: "3 Days 4 Nights",
+      subtitle: "3 Days, 4 Nights",
       rate: "4.5",
       discount: "5,500",
       price: "4,000",
     },
   ];
+
   return (
     <div
       id="packages"
-      className="flex items-center justify-center px-3 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px] pb-5"
+      className="flex items-center justify-center flex-col gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8"
     >
       <Title
-        first="All Inclusive"
+        first="All-Inclusive"
         second="Packages"
-        description="Explore all inclusive packages that turn your travel into a seemless
-          adventure. Enjoy great deals on city tours, desert safaris, water
-          sports, amusement parks and wellness retreats-all in one package."
+        description="Explore all-inclusive packages that turn your travel into a seamless
+        adventure. Enjoy great deals on city tours, desert safaris, water sports, amusement parks, and wellness retreats all in one package."
       />
       <div className="flex overflow-x-scroll gap-6 w-full p-1">
         {packages.map((item, index) => (
           <div
             key={index}
-            className="w-[200px] hover:bg-[#000020] active:bg-[#000020] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-black flex flex-col"
+            className="w-[200px] sm:w-[250px] md:w-[300px] hover:bg-[#000020] active:bg-[#000020] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-black flex flex-col"
           >
-            <div className="flex items-center object-cover h-[150px]">
+            <div className="flex items-center object-cover h-[150px] sm:h-[180px]">
               <img
                 src={item.img}
-                alt={item.img}
-                className="w-full object-cover h-full rounded hover:scale-95 active:scale-95 tours"
+                alt={item.title}
+                className="w-full object-cover h-full rounded hover:scale-95 active:scale-95 transition-transform duration-300"
               />
             </div>
             <div className="flex flex-col gap-3">
@@ -106,11 +105,11 @@ const Packages = () => {
                 <p className="text-gray-400 mr-2">${item.discount}</p>
                 <p>
                   ${item.price}
-                  <span className="text-sm text-gray-400">per person</span>
+                  <span className="text-sm text-gray-400"> per person</span>
                 </p>
               </div>
             </div>
-            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full py-2 rounded cursor-pointer md:text-lg md:font-bold">
+            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full p-3 rounded md:text-lg md:font-bold">
               See Offer
             </button>
           </div>

@@ -1,18 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { CiLocationOff, CiPlane } from "react-icons/ci";
-// import { CountryStateCity } from "country-state-city";
 import { Country, City } from "country-state-city";
 import Title from "./Title";
 
 const Book = () => {
-
   const handleKeyDown = (e) => {
-e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   const [countries, setCountries] = useState([]);
-
   const [fromCities, setFromCities] = useState([]);
   const [toCities, setToCities] = useState([]);
 
@@ -22,7 +18,6 @@ e.preventDefault()
   }, []);
 
   const [errors, setErrors] = useState("");
-
   const [bookType, setBookType] = useState("Book A Flight");
 
   const options = [
@@ -41,19 +36,15 @@ e.preventDefault()
     passengers: 1,
   });
 
-  const flightType = [
-    {
-      name: "Return",
-    },
-    {
-      name: "One Way",
-    },
-  ];
+  const flightType = [{ name: "Return" }, { name: "One Way" }];
 
   const handleFlightTypeChange = (event) => {
     setBookFlight({ ...bookFlight, type: event.target.value });
   };
 
+  {
+    /* Checks for the current date and splits the date and time into two array values */
+  }
   const today = new Date().toISOString().split("T")[0];
 
   const flightInfo = [
@@ -71,12 +62,12 @@ e.preventDefault()
   const submitFlightInfo = (e) => {
     e.preventDefault();
     if (bookFlight.type === "") {
-      setErrors("Select Booking Type!");
+      setErrors("Please select a booking type.");
       return;
     } else if (bookFlight.type === "One Way") {
       setBookFlight({ ...bookFlight, return: "" });
     } else if (bookFlight.fromCity === bookFlight.toCity) {
-      setErrors("Can't Select Same Cities!");
+      setErrors("Departure and destination cities cannot be the same.");
       return;
     }
 
@@ -88,18 +79,19 @@ e.preventDefault()
     const country = countries.find(
       (country) => country.name === event.target.value
     );
-    setBookFlight({
-      ...bookFlight,
-      fromCountry: country,
-    });
+    setBookFlight({ ...bookFlight, fromCountry: country });
   };
 
   useEffect(() => {
-    setFromCities(City.getCitiesOfCountry(bookFlight.fromCountry.isoCode));
+    if (bookFlight.fromCountry) {
+      setFromCities(City.getCitiesOfCountry(bookFlight.fromCountry.isoCode));
+    }
   }, [bookFlight.fromCountry]);
 
   useEffect(() => {
-    setToCities(City.getCitiesOfCountry(bookFlight.toCountry.isoCode));
+    if (bookFlight.toCountry) {
+      setToCities(City.getCitiesOfCountry(bookFlight.toCountry.isoCode));
+    }
   }, [bookFlight.toCountry]);
 
   const handleFromCity = (event) => {
@@ -110,10 +102,7 @@ e.preventDefault()
     const country = countries.find(
       (country) => country.name === event.target.value
     );
-    setBookFlight({
-      ...bookFlight,
-      toCountry: country,
-    });
+    setBookFlight({ ...bookFlight, toCountry: country });
   };
 
   const handleToCity = (event) => {
@@ -123,14 +112,12 @@ e.preventDefault()
   return (
     <div
       id="book"
-      className="flex items-center justify-center px-3 pb-5 flex-col gap-5 sm:px-[100px] lg:px-[20%] pt-[60px]"
+      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%]  pb-8 flex-col gap-5 pt-16"
     >
       <Title
         first="What's Your"
-        second="Destination"
-        description="Experience world-class services and renowned hospitality when you book
-          your trip to anywhere wuth our Partnered Airway, the award winning
-          Airlines offer a journey of luxery comfort and exceptional care!"
+        second="Destination?"
+        description="Experience world-class services and renowned hospitality when you book your trip with our partnered airlines. The award-winning airlines offer a journey of luxury, comfort, and exceptional care!"
       />
       <div className="bg-slate-950 w-full mb-3 rounded overflow-hidden">
         <div className="flex justify-between">
@@ -138,7 +125,7 @@ e.preventDefault()
             <button
               key={option.name}
               onClick={() => setBookType(option.name)}
-              className={`w-full hover:opacity-80 active:opacity-80 p-2 cursor-pointer md:text-lg font-bold ${
+              className={`w-full hover:opacity-80 active:opacity-80 p-3 cursor-pointer md:text-lg font-bold ${
                 bookType === option.name
                   ? "text-[#87b2f1] bg-black"
                   : "text-white bg-slate-800"
@@ -151,10 +138,10 @@ e.preventDefault()
         <div className="text-white">
           {bookType === "Book A Flight" ? (
             <form
-              onSubmit={(e) => submitFlightInfo(e)}
-              className="text-white flex gap-3 flex-col p-6 "
+              onSubmit={submitFlightInfo}
+              className="text-white flex gap-4 flex-col p-6"
             >
-              <div className="flex gap-7">
+              <div className="flex gap-7 sm:flex-row flex-col">
                 {flightType.map((flight, index) => (
                   <div key={index} className="flex gap-2 items-center">
                     <input
@@ -167,13 +154,13 @@ e.preventDefault()
                   </div>
                 ))}
               </div>
-              <div className="bg-[#01012c] p-3 border-2 border-gray-400 rounded flex items-center gap-7 gap-y-3 flex-wrap w-full">
-                <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
+              <div className="bg-[#01012c] p-4 border-2 border-gray-400 rounded flex items-center gap-7 gap-y-3 flex-wrap w-full">
+                <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
                   <p className="w-[30%] md:text-lg">From:</p>
-                  <div className="flex flex-wrap gap-2 w-full">
+                  <div className="flex flex-wrap gap-4 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
-                      value={setBookFlight.fromCountry}
+                      value={bookFlight.fromCountry.name}
                       onChange={handleFromCountry}
                     >
                       {countries.map((country) => (
@@ -189,7 +176,7 @@ e.preventDefault()
                     </select>
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
-                      value={setBookFlight.fromCity}
+                      value={bookFlight.fromCity}
                       onChange={handleFromCity}
                     >
                       {fromCities.map((city) => (
@@ -205,12 +192,12 @@ e.preventDefault()
                     </select>
                   </div>
                 </div>
-                <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
+                <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
                   <p className="w-[30%] md:text-lg">To:</p>
-                  <div className="flex flex-wrap gap-2 w-full">
+                  <div className="flex flex-wrap gap-4 w-full">
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
-                      value={setBookFlight.toCountry}
+                      value={bookFlight.toCountry.name}
                       onChange={handleToCountry}
                     >
                       {countries.map((country) => (
@@ -226,7 +213,7 @@ e.preventDefault()
                     </select>
                     <select
                       className="bg-transparent border-b px-1 outline-none w-full"
-                      value={setBookFlight.toCity}
+                      value={bookFlight.toCity}
                       onChange={handleToCity}
                     >
                       {toCities.map((city) => (
@@ -245,7 +232,7 @@ e.preventDefault()
                 {flightInfo.map((flight, index) => (
                   <div
                     key={index}
-                    className="flex gap-7 items-center justify-between w-full max-w-[400px]"
+                    className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]"
                   >
                     <p className="w-[30%] md:text-lg">{flight.name}:</p>
                     <input
@@ -261,7 +248,7 @@ e.preventDefault()
                   </div>
                 ))}
                 {bookFlight.type === "Return" && (
-                  <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
+                  <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
                     <p className="w-[30%] md:text-lg">Return:</p>
                     <input
                       required
@@ -276,7 +263,7 @@ e.preventDefault()
                     />
                   </div>
                 )}
-                <div className="flex gap-7 items-center justify-between w-full max-w-[400px]">
+                <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
                   <p className="w-[30%] md:text-lg">Passenger/s:</p>
                   <input
                     required
@@ -288,15 +275,15 @@ e.preventDefault()
                         passengers: e.target.value,
                       })
                     }
-                    className="bg-transparent border-b px-1 outline-none w-full max-w-[170x] appearance-none "
+                    className="bg-transparent border-b px-1 outline-none w-full max-w-[170px] appearance-none"
                   />
                 </div>
               </div>
               {errors && (
                 <div className="text-red-500 md:text-lg">{errors}</div>
               )}
-              <div type="submit" className="flex justify-end">
-                <button className="text-[#87b2f1] bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] hover:border-2 border-2 border-transparent rounded p-2 px-5 cursor-pointer md:text-lg md:font-bold">
+              <div className="flex justify-end">
+                <button className="text-[#87b2f1] bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] hover:border-2 border-2 border-transparent rounded p-3 px-8 md:text-lg md:font-bold">
                   Search Flights
                 </button>
               </div>
