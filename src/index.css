@@ -1,9 +1,12 @@
 @import "tailwindcss";
 * {
   /* transition: all; */
-  font-family: "Outfit";
   box-sizing: border-box;
   /* transition-duration: 0.1s; */
+}
+
+body {
+  font-family: sans-serif;
 }
 
 button {

@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { BiCar, BiHotel } from "react-icons/bi";
 import { CiPlane } from "react-icons/ci";
 import { LuLuggage } from "react-icons/lu";
 import world from "../assets/images/world.png";
 import Title from "./Title";
+import { motion } from "framer-motion";
 
 const WhyUs = () => {
   const reasons = [
@@ -38,26 +40,35 @@ const WhyUs = () => {
       id="whyUs"
       className="flex items-center sm:justify-between gap-6 flex-wrap bg-[#000020] justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8"
     >
-      <div className="sm:w-[45%] lg:w-[40%]">
+      <motion.div
+        whileInView={{ opacity: 10, x: 0 }}
+        initial={{ opacity: 0, x: -50 }}
+        transition={{ duration: 1 }}
+        className="sm:w-[45%] lg:w-[40%]"
+      >
         <img
           src={world}
           alt="World"
+          loading="lazy"
           className="h-full w-full hover:scale-95 active:scale-95 transition-transform duration-300"
         />
-      </div>
+      </motion.div>
       <div className="sm:w-[45%] lg:w-[50%] text-center flex flex-col gap-5 items-center">
         <Title
-          first=""
           second="Why Choose Us"
           description="Discover unique and affordable travel experiences at every destination with us."
         />
-        <div className="flex gap-4 flex-col">
+        <motion.div
+        whileInView={{ opacity: 10, x: 0 }}
+        initial={{ opacity: 0, x: 50 }}
+        transition={{ duration: 1 }}
+        className="flex gap-4 flex-col">
           {reasons.map((reason, index) => (
-            <button
+            <div
               key={index}
-              className="flex gap-4 items-center bg-[#000020] hover:bg-[#01012c] transition-colors duration-200 flex-wrap"
+              className="flex gap-4 items-center bg-[#000020] transition-colors duration-200 flex-wrap"
             >
-              <div className="bg-white p-3 text-3xl text-black rounded-full">
+              <div className="bg-white p-3 text-3xl text-black rounded-full hover:rotate-[360deg] transition-all duration-300">
                 {reason.icon}
               </div>
               <div>
@@ -68,9 +79,9 @@ const WhyUs = () => {
                   {reason.description}
                 </p>
               </div>
-            </button>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

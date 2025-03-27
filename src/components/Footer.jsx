@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { BiLogoGmail } from "react-icons/bi";
 import { CiPlane } from "react-icons/ci";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const reachUs = [
@@ -39,17 +41,27 @@ const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-5 bg-[#000020] px-[4%] md:px-[6%] lg:px-[9%] py-8">
-      <div className="flex items-start">
+    <div className="flex flex-col gap-5 bg-[#000020] px-[3%] md:px-[5%] lg:px-[8%] py-8">
+      <motion.div
+        whileInView={{ opacity: 10, y: 0 }}
+        initial={{ opacity: 0, y: -50 }}
+        transition={{ duration: 1 }}
+        className="flex items-start font-serif"
+      >
         <a
           href="#home"
           className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center"
         >
           <CiPlane className="-rotate-[30deg] text-2xl md:text-3xl" /> LogWorld
         </a>
-      </div>
+      </motion.div>
 
-      <div className="w-full">
+      <motion.div
+        whileInView={{ opacity: 10, y: 0 }}
+        initial={{ opacity: 0, y: -50 }}
+        transition={{ duration: 1 }}
+        className="w-full"
+      >
         <div className="flex flex-wrap gap-6 justify-between max-w-[800px] mx-auto">
           {/* About Us Section */}
           <div>
@@ -93,7 +105,7 @@ const Footer = () => {
                 <a
                   href={reach.link}
                   key={index}
-                  className="text-[#87b2f1] hover:opacity-80 md:text-lg rounded-full p-2 hover:bg-[#87b2f1] hover:text-white active:bg-[#87b2f1] active:text-white"
+                  className="hover:opacity-80 md:text-lg rounded-full p-2 text-white bg-gradient-to-r  hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] "
                 >
                   {reach.icon}
                 </a>
@@ -101,13 +113,18 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Footer Bottom Text (optional) */}
-      <div className="text-center text-gray-400 text-sm">
+      <motion.div
+        whileInView={{ opacity: 10, y: 0 }}
+        initial={{ opacity: 0, y: -50 }}
+        transition={{ duration: 1 }}
+        className="text-center text-gray-400 text-sm"
+      >
         <p>© 2025 LogWorld. All Rights Reserved.</p>
         <p>Created by Benneth Addo.</p>
-      </div>
+      </motion.div>
     </div>
   );
 };

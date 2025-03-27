@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Title from "./Title";
+import { motion } from "framer-motion";
 
-const ContactUs = () => {
-  const [contactUs, setContactUs] = useState({ email: "", message: "" });
+const ContactUs = ({ userInfo, loggedIn, handleOpenLogin }) => {
+  const [message, setMessage] = useState("");
 
   return (
     <div
@@ -10,39 +12,53 @@ const ContactUs = () => {
       className="flex items-center justify-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 flex-col"
     >
       <Title first="Contact" second="Us" />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(contactUs);
-        }}
+      <motion.form
+        whileInView={{ opacity: 50, x: 0 }}
+        initial={{ opacity: 0, x: -50 }}
+        transition={{ duration: 1 }}
+        onSubmit={
+          loggedIn
+            ? (e) => {
+                e.preventDefault();
+                console.log(message);
+              }
+            : (event) => handleOpenLogin(event)
+        }
         className="w-full p-6 rounded-lg flex flex-col gap-6 md:text-lg font-semibold max-w-[700px] shadow-lg"
       >
+        <label htmlFor="email" className="sr-only">
+          Email Address
+        </label>
         <input
+          id="email"
           type="email"
-          value={contactUs.email}
-          onChange={(e) =>
-            setContactUs({ ...contactUs, email: e.target.value })
-          }
+          aria-label="Email Address"
+          value={userInfo.email}
+          readOnly
           placeholder="Your Email Address"
-          className="bg-transparent text-gray-400 p-4 w-full rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#87b2f1] transition duration-300 ease-in-out"
+          className="bg-transparent p-4 w-full rounded-md border-2 border-gray-300"
         />
+        <label htmlFor="text" className="sr-only">
+          Message
+        </label>
         <textarea
-          value={contactUs.message}
-          onChange={(e) =>
-            setContactUs({ ...contactUs, message: e.target.value })
-          }
+          id="text"
+          type="text"
+          aria-label="Message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="h-[200px] p-4 w-full rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#87b2f1] transition duration-300 ease-in-out"
           placeholder="Write your message here..."
         ></textarea>
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] p-3 px-8 rounded-md transition duration-300 ease-in-out"
+            className="text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] p-3 px-8 rounded-md transition duration-300 ease-in-out"
           >
             Send Message
           </button>
         </div>
-      </form>
+      </motion.form>
     </div>
   );
 };

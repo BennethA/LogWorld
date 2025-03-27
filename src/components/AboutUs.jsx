@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Title from "./Title";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
   const aboutUs = [
@@ -23,7 +25,7 @@ const AboutUs = () => {
   return (
     <div
       id="about"
-      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8 bg-[#000020] flex-col gap-5"
+      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 bg-[#000020] flex-col gap-5"
     >
       <Title
         first="About"
@@ -32,20 +34,23 @@ const AboutUs = () => {
       />
       <div className="flex flex-wrap justify-center gap-4">
         {aboutUs.map((about, index) => (
-          <div
+          <motion.div
             key={index}
+            whileInView={{ opacity: 50, x: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 1 }}
             className="w-full sm:w-1/2 lg:w-1/3 mb-6 md:mb-0"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-white">
               {about.title}
             </h2>
             <p className="text-gray-400 leading-6">{about.description}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
       <a
         href="#contact"
-        className="p-3 px-8 bg-[#01012c] hover:bg-[#0a0a13] active:bg-[#0a0a13] rounded text-[#87b2f1] italic text-lg font-bold transition-all"
+        className="p-3 px-8 text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded italic text-lg font-bold transition-all"
       >
         Contact Us
       </a>

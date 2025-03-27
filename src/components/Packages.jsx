@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import { BsStarFill } from "react-icons/bs";
 import pack1 from "../assets/images/pack1.jpg";
 import pack2 from "../assets/images/pack2.jpg";
@@ -8,8 +9,58 @@ import pack5 from "../assets/images/pack5.jpg";
 import pack6 from "../assets/images/pack6.jpg";
 import pack7 from "../assets/images/pack7.jpg";
 import Title from "./Title";
+import { AnimatePresence, motion } from "framer-motion";
+
+// Modal Component
+const Modal = ({ selectedPackage, onClose }) => (
+  <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-white/10 backdrop-blur-lg flex items-center justify-center"
+    >
+      <motion.div
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.9 }}
+        className="bg-white p-6 rounded-lg max-w-md w-full relative"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-[1px] right-2 text-2xl font-bold text-black"
+        >
+          &times;
+        </button>
+        <img
+          src={selectedPackage.img}
+          alt={selectedPackage.title}
+          className="w-full h-48 object-cover rounded-lg"
+        />
+        <h2 className="text-2xl font-bold mt-4">{selectedPackage.title}</h2>
+        <p className="text-gray-600">{selectedPackage.subtitle}</p>
+        <p className="text-gray-600">Rating: {selectedPackage.rate}</p>
+        <p className="text-lg font-bold mt-2 text-black">
+          ${selectedPackage.price}{" "}
+          <span className="text-sm text-gray-500">per person</span>
+        </p>
+        <p className="text-gray-500 mt-4">
+          Explore this package in more detail. Enjoy an unforgettable experience
+          in {selectedPackage.title}, including {selectedPackage.subtitle}. Get
+          ready for a vacation filled with{" "}
+          {selectedPackage.title.includes("Beach")
+            ? "beautiful beaches"
+            : "luxurious villas"}{" "}
+          and much more!
+        </p>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
 
 const Packages = () => {
+  const [selectedPackage, setSelectedPackage] = useState(null);
+
   const packages = [
     {
       img: pack1,
@@ -68,6 +119,18 @@ const Packages = () => {
       price: "4,000",
     },
   ];
+    useEffect(() => {
+      if (selectedPackage) {
+        document.body.style.overflow = "hidden"; // Disable scrolling
+      } else {
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      }
+      // Clean up: Ensure scroll is re-enabled if component unmounts or models closes
+      return () => {
+        document.body.style.overflow = "auto";
+      };
+    }, [selectedPackage]);
+
 
   return (
     <div
@@ -80,7 +143,12 @@ const Packages = () => {
         description="Explore all-inclusive packages that turn your travel into a seamless
         adventure. Enjoy great deals on city tours, desert safaris, water sports, amusement parks, and wellness retreats all in one package."
       />
-      <div className="flex overflow-x-scroll gap-6 w-full p-1">
+      <motion.div
+        whileInView={{ opacity: 50, y: 0 }}
+        initial={{ opacity: 0, y: 50 }}
+        transition={{ duration: 1 }}
+        className="flex overflow-x-scroll gap-6 w-full p-1"
+      >
         {packages.map((item, index) => (
           <div
             key={index}
@@ -102,19 +170,30 @@ const Packages = () => {
               </div>
               <p className="text-gray-400">{item.subtitle}</p>
               <div className="flex items-center md:text-lg">
-                <p className="text-gray-400 mr-2">${item.discount}</p>
+                <s className="text-gray-400 mr-2">${item.discount}</s>
                 <p>
                   ${item.price}
                   <span className="text-sm text-gray-400"> per person</span>
                 </p>
               </div>
             </div>
-            <button className="bg-[#000020] hover:bg-[#0a0a13] active:bg-[#0a0a13] text-[#87b2f1] w-full p-3 rounded md:text-lg md:font-bold">
+            <button
+              onClick={() => setSelectedPackage(item)} // Set clicked package to the state
+              className="text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] w-full p-3 rounded md:text-lg md:font-bold"
+            >
               See Offer
             </button>
           </div>
         ))}
-      </div>
+      </motion.div>
+
+      {/* Modal: Only show when a package is selected */}
+      {selectedPackage && (
+        <Modal
+          selectedPackage={selectedPackage}
+          onClose={() => setSelectedPackage(null)} // Close modal
+        />
+      )}
     </div>
   );
 };
