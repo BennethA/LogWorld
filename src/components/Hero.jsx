@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import airbnb from "../assets/images/airbnb.png";
 import qatar from "../assets/images/qatar.png";
@@ -9,13 +9,57 @@ import Title from "./Title";
 
 const Hero = () => {
   const sponsors = [airbnb, qatar, bookings, visa];
+  const [bubbles, setBubbles] = useState([]);
+
+  useEffect(() => {
+    const numBubbles = 50;
+    const bubbleArray = [];
+
+    for (let i = 0; i < numBubbles; i++) {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      const animationDuration = Math.random() * 10 + 5; // Random duration between 5-15 seconds
+      const animationDelay = Math.random() * 5; // Random delay between 0-5 seconds
+
+      bubbleArray.push({
+        x,
+        y,
+        animationDuration,
+        animationDelay,
+      });
+    }
+
+    setBubbles(bubbleArray);
+  }, []);
+
 
   return (
     <div
       id="home"
-      className="pt-24 px-[5%] md:px-[7%] lg:px-[10%] relative flex items-center justify-center text-center flex-col gap-5"
+      className="relative flex items-center justify-center text-center flex-col gap-5 pt-24 px-[5%] md:px-[7%] lg:px-[10%] overflow-hidden"
     >
-      <div className="h-[200px] w-[200px] rounded-full bg-[#2626a0] blur-2xl absolute top-[57%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+      {bubbles.map((bubble, index) => (
+        <div
+          key={index}
+          className="bubble"
+          style={{
+            left: `${bubble.x}px`,
+            top: `${bubble.y}px`,
+            animationDuration: `${bubble.animationDuration}s`,
+            animationDelay: `${bubble.animationDelay}s`,
+          }}
+        />
+      ))}
+
+      {/* Main Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2727bd] to-[#1f033f] opacity-90 z-0" />
+
+      {/* Floating gradient blobs for depth */}
+
+      <div className="absolute top-[20%] left-[15%] w-[450px] h-[450px] rounded-full bg-gradient-to-r from-[#910f91] to-[#ff0080] blur-3xl opacity-50 animate-blob-1" />
+      <div className="absolute top-[40%] right-[10%] w-[300px] h-[300px] rounded-full bg-gradient-to-tl from-[#0d0d77] to-[#028090] blur-3xl opacity-60 animate-blob-2" />
+      <div className="absolute bottom-[10%] left-[5%] w-[400px] h-[400px] rounded-full bg-gradient-to-br from-[#4d034d] to-[#aaffaa] blur-2xl opacity-40 animate-blob-3" />
+
       <Title
         first="Book Your"
         second="Dream Trip, "
@@ -29,17 +73,17 @@ const Hero = () => {
       {/* Motion for Button */}
       <motion.a
         href="#book"
-        className="p-3 px-8 text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded italic text-lg font-bold transition-all z-10 cursor-pointer"
+        className="relative z-10 p-3 px-8 text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded italic text-lg font-bold transition-all cursor-pointer"
       >
         Book A Trip
       </motion.a>
 
       {/* Motion for Sponsor Logos */}
       <motion.div
-        whileInView={{ opacity: 10, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 1 }}
-        className="flex items-center justify-center flex-wrap gap-6 z-10"
+        className="relative z-10 flex items-center justify-center flex-wrap gap-6"
       >
         {sponsors.map((sponsor, index) => (
           <img

@@ -67,21 +67,6 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
   }
   const today = new Date().toISOString().split("T")[0];
 
-  const flightInfo = [
-    {
-      type: "date",
-      name: "Departure",
-      min: today,
-      max: bookFlight.arrival,
-      value: bookFlight.departure,
-      change: (event) =>
-        setBookFlight((prevState) => ({
-          ...prevState,
-          departure: event.target.value, // Clear the return date
-        })),
-    },
-  ];
-
   const submitFlightInfo = (e) => {
     e.preventDefault();
 
@@ -277,11 +262,12 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                   type="radio"
                   value={flight.name}
                   aria-label={`Flight type ${flight.name}`}
-                  title="Choose flight type"
                   checked={bookFlight.type === flight.name}
                   onChange={handleFlightTypeChange}
                 />
-                <p className="md:text-lg">{flight.name}</p>
+                <label htmlFor={flight.name} className="md:text-lg">
+                  {flight.name}
+                </label>
               </div>
             ))}
           </div>
@@ -378,28 +364,28 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                 </select>
               </div>
             </div>
-            {flightInfo.map((flight, index) => (
-              <div
-                key={index}
-                className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]"
-              >
-                <label htmlFor={flight.name} className="w-[30%] md:text-lg">
-                  {flight.name}:{" "}
-                </label>
-                <input
-                  required
-                  id={flight.name}
-                  aria-label={flight.name}
-                  onKeyDown={handleKeyDown}
-                  min={flight.min}
-                  max={flight.max}
-                  type={flight.type}
-                  value={flight.value}
-                  onChange={flight.change}
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                />
-              </div>
-            ))}
+            <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
+              <label htmlFor="departure" className="w-[30%] md:text-lg">
+                Departure:
+              </label>
+              <input
+                required
+                id="departure"
+                aria-label="departure"
+                onKeyDown={handleKeyDown}
+                min={today}
+                max={bookFlight.arrival}
+                type="date"
+                value={bookFlight.departure}
+                onChange={(event) =>
+                  setBookFlight((prevState) => ({
+                    ...prevState,
+                    departure: event.target.value, // Clear the return date
+                  }))
+                }
+                className="bg-transparent border-b p-2 outline-none w-full"
+              />
+            </div>
             {bookFlight.type === "Return" && (
               <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
                 <label htmlFor="arrival" className="w-[30%] md:text-lg">
@@ -440,7 +426,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                       promoCode: event.target.value.toUpperCase(),
                     }))
                   }
-                  className={`bg-transparent border-b px-1 outline-none w-full $`}
+                  className={`bg-transparent border-b px-1 outline-none w-full`}
                 />
               </div>
             )}
@@ -453,6 +439,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                 id="passengers"
                 aria-label="passengers"
                 type="number"
+                inputmode="numeric"
                 value={bookFlight.passengers}
                 onChange={(event) =>
                   setBookFlight((prevState) => ({
@@ -460,7 +447,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                     passengers: event.target.value,
                   }))
                 }
-                className="bg-transparent border-b p-2 outline-none w-full max-w-[170px] appearance-none"
+                className="bg-transparent border-b p-2 outline-none w-full"
               />
             </div>
           </div>

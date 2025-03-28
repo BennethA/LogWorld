@@ -102,7 +102,7 @@ export default function Register({
           {fields.map((input, index) => {
             return (
               <div key={index}>
-                <label htmlFor="email" className="sr-only">
+                <label htmlFor={input.labelName} className="sr-only">
                   {input.labelName}
                 </label>
                 <input

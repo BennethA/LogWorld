@@ -5,6 +5,13 @@
   /* transition-duration: 0.1s; */
 }
 
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
 body {
   font-family: sans-serif;
 }
@@ -22,4 +29,71 @@ button {
 .tours {
   transition: all;
   transition-duration: 0.5s;
+}
+
+@keyframes blob-1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(100px, 100px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes blob-2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-100px, -100px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes blob-3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(150px, -150px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.animate-blob-1 {
+  animation: blob-1 10s linear infinite;
+}
+
+.animate-blob-2 {
+  animation: blob-2 15s linear infinite;
+}
+
+.animate-blob-3 {
+  animation: blob-3 20s linear infinite;
+}
+
+
+.bubble {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: float 10s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
 }

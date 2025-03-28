@@ -17,7 +17,7 @@ const Title = ({ first, second, third, fourth, fifth, sixth, description }) => {
           {third} <span className="text-[#87b2f1] italic">{fourth}</span>
           {fifth} <span className="text-[#87b2f1] italic">{sixth}</span>
         </h1>
-        <p className="w-full sm:w-[80%] text-gray-400 leading-[20px] md:text-lg text-center">
+        <p className="w-full sm:w-[80%] text-gray-300 leading-[20px] md:text-lg text-center">
           {description}
         </p>
       </motion.div>
