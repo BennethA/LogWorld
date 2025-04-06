@@ -50,9 +50,10 @@ const Footer = () => {
       >
         <a
           href="#home"
-          className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center"
+          className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center font-serif relative overflow-hidden"
         >
-          <CiPlane className="-rotate-[30deg] text-2xl md:text-3xl" /> LogWorld
+          <CiPlane className="animate-smooth-move text-2xl md:text-3xl -rotate-[30deg]" />
+          LogWorld
         </a>
       </motion.div>
 

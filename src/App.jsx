@@ -39,18 +39,21 @@ const App = () => {
     setOpenLogin(true);
     setOpenRegister(false);
     setOpenForgotPassword(false);
+    setErrors("")
   };
 
   const handleOpenRegister = () => {
     setOpenLogin(false);
     setOpenRegister(true);
     setOpenForgotPassword(false);
+    setErrors("");
   };
 
   const handleOpenForgotPassword = () => {
     setOpenLogin(false);
     setOpenRegister(false);
     setOpenForgotPassword(true);
+    setErrors("");
   };
 
   const handleOpenMenu = () => {
@@ -104,6 +107,8 @@ const App = () => {
       <ContactUs
         userInfo={userInfo}
         loggedIn={loggedIn}
+        errors={errors}
+        setErrors={setErrors}
         handleOpenLogin={handleOpenLogin}
       />
       {openLogin && (

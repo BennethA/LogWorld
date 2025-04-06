@@ -2,9 +2,19 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import { motion } from "framer-motion";
-
-const ContactUs = ({ userInfo, loggedIn, handleOpenLogin }) => {
+// import emailjs from "emailjs-com";
+const ContactUs = ({
+  userInfo,
+  loggedIn,
+  errors,
+  setErrors,
+  handleOpenLogin,
+}) => {
   const [message, setMessage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <div
@@ -16,14 +26,7 @@ const ContactUs = ({ userInfo, loggedIn, handleOpenLogin }) => {
         whileInView={{ opacity: 50, x: 0 }}
         initial={{ opacity: 0, x: -50 }}
         transition={{ duration: 1 }}
-        onSubmit={
-          loggedIn
-            ? (e) => {
-                e.preventDefault();
-                console.log(message);
-              }
-            : (event) => handleOpenLogin(event)
-        }
+        onSubmit={loggedIn ? handleSubmit : (event) => handleOpenLogin(event)}
         className="w-full p-6 rounded-lg flex flex-col gap-6 md:text-lg font-semibold max-w-[700px] shadow-lg"
       >
         <label htmlFor="email" className="sr-only">
@@ -50,6 +53,9 @@ const ContactUs = ({ userInfo, loggedIn, handleOpenLogin }) => {
           className="h-[200px] p-4 w-full rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#87b2f1] transition duration-300 ease-in-out"
           placeholder="Write your message here..."
         ></textarea>
+        {errors && (
+          <div className="bg-red-100 text-red-600 p-2 rounded-md">{errors}</div>
+        )}
         <div className="flex justify-end">
           <button
             type="submit"

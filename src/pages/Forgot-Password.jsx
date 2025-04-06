@@ -60,7 +60,10 @@ export default function ForgotPassword({
     <main className="fixed z-[100] top-[60px] left-0 right-0 flex items-center justify-center backdrop-blur-md">
       <div className="text-center max-w-[400px] p-8 rounded-lg bg-[#000020c9] w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto sm:w-[500px] relative">
         <BiX
-          onClick={() => setOpenForgotPassword(false)}
+          onClick={() => {
+            setErrors("");
+            setOpenForgotPassword(false);
+          }}
           className="text-4xl hover:opacity-80 absolute top-1 right-1 cursor-pointer"
         />
         <Title first="Reset" second="Password!" />

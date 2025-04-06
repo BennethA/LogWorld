@@ -50,7 +50,7 @@ const WhyUs = () => {
           src={world}
           alt="World"
           loading="lazy"
-          className="h-full w-full hover:scale-95 active:scale-95 transition-transform duration-300"
+          className="hover:scale-95 active:scale-95 transition-transform duration-300"
         />
       </motion.div>
       <div className="sm:w-[45%] lg:w-[50%] text-center flex flex-col gap-5 items-center">
@@ -68,7 +68,7 @@ const WhyUs = () => {
               key={index}
               className="flex gap-4 items-center bg-[#000020] transition-colors duration-200 flex-wrap"
             >
-              <div className="bg-white p-3 text-3xl text-black rounded-full hover:rotate-[360deg] transition-all duration-300">
+              <div className="bg-white p-3 text-3xl text-black rounded-full transition-all duration-300">
                 {reason.icon}
               </div>
               <div>

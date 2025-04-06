@@ -20,9 +20,9 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
   const [bookFlight, setBookFlight] = useState({
     type: "Return",
     fromCountry: "",
-    fromCity: "",
+    fromCity: { name: "", iataCode: "" },
     toCountry: "",
-    toCity: "",
+    toCity: { name: "", iataCode: "" },
     departure: "",
     arrival: "",
     passengers: 1,
@@ -146,7 +146,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
 
     // If "Promo is true", display the Promo section. If not remove it and the value is empty
     if (promo && bookFlight.promoCode === "") {
-      setErrors("Promo Code cannot be empty!");
+      setErrors("Please enter a Promo Code!");
       return;
     }
 
@@ -160,12 +160,13 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
     }
 
     setErrors("");
+    console.log(bookFlight);
     setBookFlight({
       type: "Return",
-      fromCountry: "",
-      fromCity: "",
-      toCountry: "",
-      toCity: "",
+      fromCountry: { name: "" },
+      fromCity: { name: "", iataCode: "" },
+      toCountry: { name: "" },
+      toCity: { name: "", iataCode: "" },
       departure: "",
       arrival: "",
       passengers: 1,
@@ -198,7 +199,10 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
   const handleFromCity = (event) => {
     setBookFlight((prevState) => ({
       ...prevState,
-      fromCity: event.target.value, // Clear the return date
+      fromCity: {
+        name: event.target.value,
+        iataCode: bookFlight.fromCountry.isoCode,
+      }, // Clear the return date
     }));
   };
 
@@ -215,7 +219,10 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
   const handleToCity = (event) => {
     setBookFlight((prevState) => ({
       ...prevState,
-      toCity: event.target.value, // Clear the return date
+      toCity: {
+        name: event.target.value,
+        iataCode: bookFlight.toCountry.isoCode,
+      }, // Clear the return date
     }));
   };
 
@@ -304,7 +311,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                 <select
                   id="fromCity"
                   className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.fromCity}
+                  value={bookFlight.fromCity.name}
                   onChange={handleFromCity}
                 >
                   {fromCities.map((city) => (
@@ -349,7 +356,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                   id="toCity"
                   aria-label="Select arrival city"
                   className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.toCity}
+                  value={bookFlight.toCity.name}
                   onChange={handleToCity}
                 >
                   {toCities.map((city) => (
@@ -370,6 +377,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
               </label>
               <input
                 required
+                inputMode="numeric"
                 id="departure"
                 aria-label="departure"
                 onKeyDown={handleKeyDown}
@@ -439,7 +447,7 @@ const Book = ({ loggedIn, handleOpenLogin }) => {
                 id="passengers"
                 aria-label="passengers"
                 type="number"
-                inputmode="numeric"
+                inputMode="numeric"
                 value={bookFlight.passengers}
                 onChange={(event) =>
                   setBookFlight((prevState) => ({

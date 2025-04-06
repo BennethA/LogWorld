@@ -36,18 +36,20 @@ const Hero = () => {
   return (
     <div
       id="home"
-      className="relative flex items-center justify-center text-center flex-col gap-5 pt-24 px-[5%] md:px-[7%] lg:px-[10%] overflow-hidden"
+      className="relative flex items-center justify-center text-center flex-col gap-16 px-[5%] md:px-[7%] lg:px-[10%] overflow-hidden h-screen"
     >
+
       {bubbles.map((bubble, index) => (
         <div
-          key={index}
-          className="bubble"
-          style={{
-            left: `${bubble.x}px`,
-            top: `${bubble.y}px`,
-            animationDuration: `${bubble.animationDuration}s`,
-            animationDelay: `${bubble.animationDelay}s`,
-          }}
+        key={index}
+        className="bubble"
+        style={{
+          left: `${bubble.x}px`,
+          right: `${bubble.x}px`,
+          top: `${bubble.y}px`,
+          animationDuration: `${bubble.animationDuration}s`,
+          animationDelay: `${bubble.animationDelay}s`,
+        }}
         />
       ))}
 

@@ -21,9 +21,10 @@ const Header = ({
     <div className="flex justify-between items-center font-bold fixed z-20 w-full top-0 h-[60px] px-[3%] md:px-[5%] lg:px-[8%] backdrop-blur-lg border-b border-white/20">
       <a
         href="#home"
-        className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center font-serif"
+        className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center font-serif relative overflow-hidden"
       >
-        <CiPlane className="-rotate-[30deg] text-2xl md:text-3xl" /> LogWorld
+        <CiPlane className="animate-smooth-move text-2xl md:text-3xl -rotate-[30deg]" />
+        LogWorld
       </a>
 
       {/* Desktop Navigation */}
@@ -31,7 +32,7 @@ const Header = ({
         {pages.map((page, index) => (
           <a
             href={page.link}
-            className="hover:bg-[#15152cc0] active:bg-[#15152cc0] p-2 rounded-md md:text-lg"
+            className="hover:bg-[#15152c41] active:bg-[#15152c41] p-2 rounded-md md:text-lg"
             key={index}
           >
             {page.title}
@@ -44,7 +45,7 @@ const Header = ({
         {loggedIn ? (
           <FaUserCheck
             onClick={() => setOpenUserInfo(true)}
-            className="hover:bg-[#15152cc0] active:bg-[#15152cc0] text-2xl p-1 rounded-full"
+            className="hover:bg-[#15152c41] active:bg-[#15152c41] text-2xl p-1 rounded-full"
           />
         ) : (
           <BiUser
@@ -71,7 +72,7 @@ const Header = ({
           <a
             onClick={handleOpenMenu}
             href={page.link}
-            className="flex p-3 hover:bg-[#15152cc0] active:bg-[#15152cc0] text-lg font-bold rounded"
+            className="flex p-3 hover:bg-[#15152c41] active:bg-[#15152c41] text-lg font-bold rounded"
             key={index}
           >
             {page.title}
@@ -92,7 +93,7 @@ const Header = ({
         {loggedIn ? (
           <FaUserCheck
             onClick={() => setOpenUserInfo(true)}
-            className="hover:opacity-80 bg-green-900 text-white text-2xl p-1 rounded-full cursor-pointer"
+            className="hover:opacity-80 text-white text-2xl p-1 rounded-full cursor-pointer"
           />
         ) : (
           <BiUser
