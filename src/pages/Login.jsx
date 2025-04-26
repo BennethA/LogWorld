@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../components/Title";
 import { BiX } from "react-icons/bi";
 
-export default function Login({
+export default function Login({darkMode,
   userInfo,
   setUserInfo,
   errors,
@@ -39,7 +39,7 @@ export default function Login({
     <main
       className={`fixed z-[100] top-[60px] left-0 right-0 flex items-center justify-center backdrop-blur-md`}
     >
-      <div className="text-center max-w-[400px] p-8 rounded-lg bg-[#000020c9] w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto relative">
+      <div className="text-center max-w-[400px] p-8 rounded-lg w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto relative">
         <BiX
           onClick={() => {
             setErrors("");
@@ -47,7 +47,7 @@ export default function Login({
           }}
           className="text-4xl hover:opacity-80 absolute top-1 right-1 cursor-pointer"
         />
-        <Title first="Login" second="Here!" />
+        <Title darkMode={darkMode} first="Login" second="Here!" />
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <div className="flex flex-col gap-4 items-center justify-center">

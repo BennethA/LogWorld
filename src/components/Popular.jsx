@@ -8,7 +8,7 @@ import hotel3 from "../assets/images/hotel3.jpg";
 import hotel4 from "../assets/images/hotel4.jpg";
 import Title from "./Title";
 
-const Popular = () => {
+const Popular = ({ darkMode }) => {
   const tours = [
     {
       img: hotel1,
@@ -47,6 +47,7 @@ const Popular = () => {
   return (
     <div className="flex flex-col items-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8">
       <Title
+        darkMode={darkMode}
         first="Popular"
         second="Tours"
         description="Discover our popular all-in-one tour packages that make your travel effortless! Enjoy amazing deals on city tours, thrilling safaris, exciting water sports, and relaxing wellness retreats—all included!"
@@ -60,18 +61,17 @@ const Popular = () => {
         {tours.map((tour, index) => (
           <div
             key={index}
-            className="flex flex-col sm:flex-row justify-between items-center bg-[#1a1a2d] border border-gray-700 rounded-lg p-4 gap-4 hover:bg-transparent transition-all duration-300 ease-in-out"
+            className={`flex flex-col sm:flex-row justify-between items-center border-[#8080804f] border rounded-lg p-4 gap-4 transition-all duration-300 ease-in-out ${
+              darkMode ? "bg-[#04040ea2]" : "bg-gray-300"
+            }`}
           >
-            <div className="w-full sm:w-[180px] h-[180px] object-cover">
+            <div className="w-full sm:w-[180px] h-[180px] object-cover overflow-hidden rounded">
               <motion.img
                 loading="lazy"
                 src={tour.img}
                 alt={`${tour.title} Tour Image`}
                 aria-label={`${tour.title} Image`}
-                className="w-full h-full object-cover rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                className="w-full h-full object-cover hover:scale-150 active:scale-150 transition-all duration-300"
               />
             </div>
 
@@ -82,12 +82,12 @@ const Popular = () => {
               <div className="text-md sm:text-lg md:text-xl lg:text-2xl font-bold">
                 {tour.title}
               </div>
-              <p className="text-gray-300 text-sm">
+              <p className="text-sm">
                 ${tour.price} <span className="text-gray-400">per person</span>
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:w-[40%] md:w-[30%] text-sm text-gray-400">
+            <div className="flex flex-col gap-3 sm:w-[40%] md:w-[30%] text-sm">
               <div className="flex items-center gap-2">
                 <span className="flex items-center gap-1">
                   <BiAlarm /> {tour.days}
@@ -98,6 +98,7 @@ const Popular = () => {
                 {tour.reviews} reviews
               </div>
               <button
+              type="button"
                 aria-label="Book Tour"
                 className="p-3 px-8 text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded italic text-lg font-bold transition-all z-10 cursor-pointer"
               >

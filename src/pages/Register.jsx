@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import { BiX } from "react-icons/bi";
 
 export default function Register({
+  darkMode,
   userInfo,
   setUserInfo,
   errors,
@@ -91,7 +92,7 @@ export default function Register({
     <main
       className={`fixed z-[100] top-[60px] left-0 right-0 flex items-center justify-center backdrop-blur-md`}
     >
-      <div className="text-center max-w-[400px] p-8 rounded-lg bg-[#000020c9] w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto sm:w-[500px] relative">
+      <div className="text-center max-w-[400px] p-8 rounded-lg w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto sm:w-[500px] relative">
         <BiX
           onClick={() => {
             setErrors("");
@@ -99,7 +100,7 @@ export default function Register({
           }}
           className="text-4xl hover:opacity-80 absolute top-1 right-1 cursor-pointer"
         />
-        <Title first="Register" second="Here!" />
+        <Title darkMode={darkMode} first="Register" second="Here!" />
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
           {fields.map((input, index) => {

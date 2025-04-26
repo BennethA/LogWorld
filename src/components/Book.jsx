@@ -1,480 +1,388 @@
 import React, { useEffect, useState } from "react";
-import { CiLocationOff, CiPlane } from "react-icons/ci";
 import { Country, City } from "country-state-city";
+import { BiMinus, BiPlus } from "react-icons/bi";
 import Title from "./Title";
-import { BiPlus } from "react-icons/bi";
-import { FaMoon, FaSun } from "react-icons/fa";
 
-const Book = ({ loggedIn, handleOpenLogin }) => {
+const CountrySelector = ({
+  label,
+  selectedCountry,
+  setCountry,
+  countries,
+  error,
+}) => (
+  <div className="w-full">
+    <label htmlFor={label} className="block mb-1 md:text-lg">
+      {label}
+    </label>
+    <select
+      className={`p-2 outline-none w-full bg-[#040625] text-white rounded-md border-b-2 ${
+        error && "border-red-500"
+      }`}
+      id={label}
+      value={selectedCountry?.name || ""}
+      onChange={(e) => setCountry(e.target.value)}
+    >
+      <option value="" disabled>
+        Select Country
+      </option>
+      {countries.map((country) => (
+        <option key={country.isoCode} value={country.name}>
+          {country.name}
+        </option>
+      ))}
+    </select>
+    {error && <p className="text-red-500 text-sm">{error}</p>}
+  </div>
+);
+
+const CitySelector = ({ label, selectedCity, setCity, cities, error }) => (
+  <div className="w-full">
+    <label htmlFor={label} className="block mb-1 md:text-lg">
+      {label}
+    </label>
+    <select
+      className={`border-b-2 p-2 outline-none w-full bg-[#040625] text-white rounded-md ${
+        error && "border-red-500"
+      }`}
+      id={label}
+      value={selectedCity?.name || ""}
+      onChange={(e) => setCity(e.target.value)}
+    >
+      <option value="" disabled>
+        Select City
+      </option>
+      {cities.map((city) => (
+        <option key={city.name + city.stateCode} value={city.name}>
+          {city.name}
+        </option>
+      ))}
+    </select>
+    {error && <p className="text-red-500 text-sm">{error}</p>}
+  </div>
+);
+
+const Book = ({ loggedIn, handleOpenLogin, darkMode }) => {
   const [promo, setPromo] = useState(false);
-
-  const handleKeyDown = (event) => {
-    event.preventDefault();
-  };
   const [countries, setCountries] = useState([]);
   const [fromCities, setFromCities] = useState([]);
   const [toCities, setToCities] = useState([]);
-
-  const [errors, setErrors] = useState("");
+  const today = new Date().toISOString().split("T")[0];
 
   const [bookFlight, setBookFlight] = useState({
     type: "Return",
-    fromCountry: "",
-    fromCity: { name: "", iataCode: "" },
-    toCountry: "",
-    toCity: { name: "", iataCode: "" },
+    fromCountry: {},
+    fromCity: {},
+    toCountry: {},
+    toCity: {},
     departure: "",
     arrival: "",
     passengers: 1,
     promoCode: "",
   });
 
-  const handlePromo = (event) => {
-    event.preventDefault();
-    if (promo) {
-      setPromo(false);
-      setBookFlight((prevState) => ({
-        ...prevState,
-        promoCode: "",
-      }));
-      return;
-    } else {
-      setPromo(true);
-      setBookFlight((prevState) => ({
-        ...prevState,
-        promoCode: "",
-      }));
-      return;
-    }
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const updateBookFlight = (field, value) => {
+    setBookFlight((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   useEffect(() => {
-    const allCountries = Country.getAllCountries();
-    setCountries(allCountries);
+    setCountries(Country.getAllCountries());
   }, []);
 
-  const flightType = [{ name: "Return" }, { name: "One Way" }];
-
-  const handleFlightTypeChange = (event) => {
-    setBookFlight((prevState) => ({
-      ...prevState,
-      type: event.target.value, // Clear the return date
-    }));
-  };
-
-  {
-    /* Checks for the current date and splits the date and time into two array values */
-  }
-  const today = new Date().toISOString().split("T")[0];
-
-  const submitFlightInfo = (e) => {
-    e.preventDefault();
-
-    // Check for flight type
-    if (!bookFlight.type) {
-      setErrors("Please select a flight type!");
-      return;
-    }
-
-    // Check for 'From' country
-    if (!bookFlight.fromCountry) {
-      setErrors("Please select the country you want to fly from!");
-      return;
-    }
-
-    // Check if the 'From' country has cities, and if so, ensure a city is selected
-    const fromCountryCities = City.getCitiesOfCountry(
-      bookFlight.fromCountry.isoCode
-    ).length;
-    if (fromCountryCities > 0 && !bookFlight.fromCity) {
-      setErrors("Please select the city you want to fly from!");
-      return;
-    }
-
-    // Check for 'To' country
-    if (!bookFlight.toCountry) {
-      setErrors("Please select the country you want to fly to!");
-      return;
-    }
-
-    // Check if the 'To' country has cities, and if so, ensure a city is selected
-    const toCountryCities = City.getCitiesOfCountry(
-      bookFlight.toCountry.isoCode
-    ).length;
-    if (toCountryCities > 0 && !bookFlight.toCity) {
-      setErrors("Please select the city you want to fly to!");
-      return;
-    }
-
-    // Condition: If 'From' country has no cities, user cannot select the same country as 'To' country
-    if (
-      fromCountryCities === 0 &&
-      bookFlight.fromCountry.name === bookFlight.toCountry.name
-    ) {
-      setErrors(
-        "You cannot select the same country with no cities as both 'From' and 'To' country!"
-      );
-      return;
-    }
-
-    // Check for 'From' and 'To' countries having no cities
-    if (fromCountryCities === 0 && toCountryCities === 0) {
-      setErrors(""); // Clear errors and proceed
-      console.log(bookFlight);
-      return;
-    }
-
-    // Ensure 'From' and 'To' cities are not the same
-    if (bookFlight.fromCity === bookFlight.toCity) {
-      setErrors("Departure and destination cities cannot be the same!");
-      return;
-    }
-
-    // Check if 'Departure' date is selected and valid
-    if (!bookFlight.departure || bookFlight.departure < today) {
-      setErrors("Please select a valid departure date!");
-      return;
-    }
-
-    // If flight type is 'One Way', remove the 'return' value
-    if (bookFlight.type === "One Way") {
-      setBookFlight((prevState) => ({
-        ...prevState,
-        arrival: "", // Clear the return date
-      }));
-    }
-
-    // If "Promo is true", display the Promo section. If not remove it and the value is empty
-    if (promo && bookFlight.promoCode === "") {
-      setErrors("Please enter a Promo Code!");
-      return;
-    }
-
-    // Check if 'Arrival' date is selected and valid (only for 'Arrival' flight)
-    if (
-      bookFlight.type === "Return" &&
-      (!bookFlight.arrival || bookFlight.arrival < bookFlight.departure)
-    ) {
-      setErrors("Please select a valid return date!");
-      return;
-    }
-
-    setErrors("");
-    console.log(bookFlight);
-    setBookFlight({
-      type: "Return",
-      fromCountry: { name: "" },
-      fromCity: { name: "", iataCode: "" },
-      toCountry: { name: "" },
-      toCity: { name: "", iataCode: "" },
-      departure: "",
-      arrival: "",
-      passengers: 1,
-      promoCode: "",
-    });
-  };
-
-  const handleFromCountry = (event) => {
-    const country = countries.find(
-      (country) => country.name === event.target.value
-    );
-    setBookFlight((prevState) => ({
-      ...prevState,
-      fromCountry: country, // Clear the return date
-    }));
-  };
-
   useEffect(() => {
-    if (bookFlight.fromCountry) {
-      setFromCities(City.getCitiesOfCountry(bookFlight.fromCountry.isoCode));
+    if (bookFlight.fromCountry?.isoCode) {
+      const cities = City.getCitiesOfCountry(bookFlight.fromCountry.isoCode);
+      setFromCities(cities);
+      updateBookFlight("fromCity", {});
     }
   }, [bookFlight.fromCountry]);
 
   useEffect(() => {
-    if (bookFlight.toCountry) {
-      setToCities(City.getCitiesOfCountry(bookFlight.toCountry.isoCode));
+    if (bookFlight.toCountry?.isoCode) {
+      const cities = City.getCitiesOfCountry(bookFlight.toCountry.isoCode);
+      setToCities(cities);
+      updateBookFlight("toCity", {});
     }
   }, [bookFlight.toCountry]);
 
-  const handleFromCity = (event) => {
-    setBookFlight((prevState) => ({
-      ...prevState,
-      fromCity: {
-        name: event.target.value,
-        iataCode: bookFlight.fromCountry.isoCode,
-      }, // Clear the return date
-    }));
+  const validateForm = () => {
+    const newErrors = {};
+    const {
+      fromCountry,
+      fromCity,
+      toCountry,
+      toCity,
+      departure,
+      arrival,
+      type,
+      promoCode,
+    } = bookFlight;
+
+    // Country checks
+    if (!fromCountry.name) newErrors.fromCountry = "Required";
+    if (!toCountry.name) newErrors.toCountry = "Required";
+
+    // City checks only if there are cities available
+    if (fromCities.length > 0 && !fromCity.name) {
+      newErrors.fromCity = "Required";
+    }
+
+    if (toCities.length > 0 && !toCity.name) {
+      newErrors.toCity = "Required";
+    }
+
+    // Prevent selecting the same city if cities are available
+    if (
+      fromCities.length > 0 &&
+      toCities.length > 0 &&
+      fromCity.name &&
+      toCity.name &&
+      fromCity.name === toCity.name
+    ) {
+      newErrors.toCity = "Cities can't be the same!";
+    }
+
+    // Prevent selecting the same country when both have no cities
+    if (
+      fromCountry.isoCode &&
+      toCountry.isoCode &&
+      fromCountry.isoCode === toCountry.isoCode &&
+      fromCities.length === 0 &&
+      toCities.length === 0
+    ) {
+      newErrors.toCountry =
+        "Countries can't be the same if no cities are available!";
+    }
+
+    // Date validation
+    if (!departure || departure < today)
+      newErrors.departure = "Invalid departure date";
+
+    if (type === "Return" && (!arrival || arrival < departure)) {
+      newErrors.arrival = "Invalid return date";
+    }
+
+    if (promo && !promoCode) newErrors.promoCode = "Enter promo code";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleToCountry = (event) => {
-    const country = countries.find(
-      (country) => country.name === event.target.value
-    );
-    setBookFlight((prevState) => ({
-      ...prevState,
-      toCountry: country, // Clear the return date
-    }));
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!loggedIn) return handleOpenLogin(e);
+    if (!validateForm()) return;
 
-  const handleToCity = (event) => {
-    setBookFlight((prevState) => ({
-      ...prevState,
-      toCity: {
-        name: event.target.value,
-        iataCode: bookFlight.toCountry.isoCode,
-      }, // Clear the return date
-    }));
-  };
+    setLoading(true);
 
-  const [darkMode, setDarkMode] = useState(true);
+    // Simulate an API call
+    try {
+      const response = await fetch("https://api.example.com/flights", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bookFlight),
+      });
+
+      const data = await response.json();
+      console.log("Available flights:", data);
+    } catch (err) {
+      console.error("Failed to fetch flights:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
       id="book"
-      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%] pb-8 flex-col gap-5 pt-16"
+      className="flex flex-col items-center px-[5%] pt-16 pb-8 gap-5"
     >
       <Title
+        darkMode={darkMode}
         first="What's Your"
         second="Destination?"
-        description="Experience world-class services and renowned hospitality when you book your trip with our partnered airlines. The award-winning airlines offer a journey of luxury, comfort, and exceptional care!"
+        description="Experience world-class services and renowned hospitality when you book your trip with our partnered airlines."
       />
-      <div
-        className={`${
-          darkMode ? "bg-[#040625] text-white" : "bg-gray-100"
-        } text-black w-full mb-3 rounded overflow-hidden`}
-      >
-        <div
-          className={`w-full p-3 text-lg font-bold border-b relative text-center`}
-        >
-          Book A Flight
-          <div
-            onClick={() => setDarkMode(!darkMode)}
-            className="flex items-center justify-center absolute right-[23px] top-[17px] cursor-pointer hover:opacity-80 active:opacity-80 "
-          >
-            {darkMode ? (
-              <FaSun className="text-white" />
-            ) : (
-              <FaMoon className="text-[#040625]" />
-            )}
-          </div>
-        </div>
-        <form
-          onSubmit={loggedIn ? submitFlightInfo : handleOpenLogin}
-          className="flex gap-4 flex-col p-6"
-        >
+
+      <div className={`w-full rounded flex flex-col`}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
           <div className="flex gap-7 flex-wrap">
-            {flightType.map((flight, index) => (
-              <div key={index} className="flex gap-2 items-center">
+            {["Return", "One Way"].map((type) => (
+              <label key={type} className="flex items-center gap-2">
                 <input
                   type="radio"
-                  value={flight.name}
-                  aria-label={`Flight type ${flight.name}`}
-                  checked={bookFlight.type === flight.name}
-                  onChange={handleFlightTypeChange}
+                  id={type}
+                  value={type}
+                  checked={bookFlight.type === type}
+                  onChange={(e) => updateBookFlight("type", e.target.value)}
                 />
-                <label htmlFor={flight.name} className="md:text-lg">
-                  {flight.name}
-                </label>
-              </div>
+                {type}
+              </label>
             ))}
           </div>
-          <div className="py-4 flex items-center gap-7 gap-y-3 flex-wrap w-full">
-            <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
-              <label
-                htmlFor="fromCountryAndCity"
-                className="w-[30%] md:text-lg"
-              >
-                From:
-              </label>
-              <div className="flex flex-wrap gap-4 w-full">
-                <select
-                  id="fromCountry"
-                  aria-label="Select departure country"
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.fromCountry.name}
-                  onChange={handleFromCountry}
-                >
-                  <option value="" disabled>
-                    Select Country
-                  </option>
-                  {countries.map((country) => (
-                    <option
-                      required
-                      value={country.name}
-                      key={country.name + country.stateCode}
-                      className="bg-[#01012c] text-white"
-                    >
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  id="fromCity"
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.fromCity.name}
-                  onChange={handleFromCity}
-                >
-                  {fromCities.map((city) => (
-                    <option
-                      value={city.name}
-                      key={city.name + city.stateCode}
-                      className="bg-[#01012c] text-white"
-                    >
-                      {city.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
-              <label htmlFor="toCountryAndCity" className="w-[30%] md:text-lg">
-                To:
-              </label>
-              <div className="flex flex-wrap gap-4 w-full">
-                <select
-                  id="toCountry"
-                  aria-label="Select arrival country"
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.toCountry.name}
-                  onChange={handleToCountry}
-                >
-                  <option value="" disabled>
-                    Select Country
-                  </option>
-                  {countries.map((country) => (
-                    <option
-                      required
-                      value={country.name}
-                      key={country.name + country.stateCode}
-                      className="bg-[#01012c] text-white"
-                    >
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  id="toCity"
-                  aria-label="Select arrival city"
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                  value={bookFlight.toCity.name}
-                  onChange={handleToCity}
-                >
-                  {toCities.map((city) => (
-                    <option
-                      value={city.name}
-                      key={city.name + city.stateCode}
-                      className="bg-[#01012c] text-white"
-                    >
-                      {city.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
-              <label htmlFor="departure" className="w-[30%] md:text-lg">
-                Departure:
-              </label>
-              <input
-                required
-                inputMode="numeric"
-                id="departure"
-                aria-label="departure"
-                onKeyDown={handleKeyDown}
-                min={today}
-                max={bookFlight.arrival}
-                type="date"
-                value={bookFlight.departure}
-                onChange={(event) =>
-                  setBookFlight((prevState) => ({
-                    ...prevState,
-                    departure: event.target.value, // Clear the return date
-                  }))
-                }
-                className="bg-transparent border-b p-2 outline-none w-full"
-              />
-            </div>
-            {bookFlight.type === "Return" && (
-              <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
-                <label htmlFor="arrival" className="w-[30%] md:text-lg">
-                  Arrival:
-                </label>
-                <input
-                  required
-                  id="arrival"
-                  aria-label="arrival"
-                  onKeyDown={handleKeyDown}
-                  type="date"
-                  value={bookFlight.arrival}
-                  onChange={(event) =>
-                    setBookFlight((prevState) => ({
-                      ...prevState,
-                      arrival: event.target.value,
-                    }))
-                  }
-                  className="bg-transparent border-b p-2 outline-none w-full"
-                  min={bookFlight.departure}
-                />
-              </div>
+
+          <CountrySelector
+            label="From Country:"
+            selectedCountry={bookFlight.fromCountry}
+            setCountry={(name) => {
+              const found = countries.find((c) => c.name === name);
+              updateBookFlight("fromCountry", found);
+            }}
+            countries={countries}
+            error={errors.fromCountry}
+          />
+
+          <CitySelector
+            label="From City:"
+            selectedCity={bookFlight.fromCity}
+            setCity={(name) =>
+              updateBookFlight("fromCity", {
+                name,
+                iataCode: bookFlight.fromCountry.isoCode,
+              })
+            }
+            cities={fromCities}
+            error={errors.fromCity}
+          />
+
+          <CountrySelector
+            label="To Country:"
+            selectedCountry={bookFlight.toCountry}
+            setCountry={(name) => {
+              const found = countries.find((c) => c.name === name);
+              updateBookFlight("toCountry", found);
+            }}
+            countries={countries}
+            error={errors.toCountry}
+          />
+
+          <CitySelector
+            label="To City:"
+            selectedCity={bookFlight.toCity}
+            setCity={(name) =>
+              updateBookFlight("toCity", {
+                name,
+                iataCode: bookFlight.toCountry.isoCode,
+              })
+            }
+            cities={toCities}
+            error={errors.toCity}
+          />
+
+          <div className="w-full">
+            <label htmlFor="Departure" className="block mb-1 md:text-lg">
+              Departure:
+            </label>
+            <input
+              id="Departure"
+              type="date"
+              min={today}
+              value={bookFlight.departure}
+              onChange={(e) => updateBookFlight("departure", e.target.value)}
+              className={`bg-[#040625] text-white border-b-2 p-2 outline-none w-full rounded-md ${
+                errors.departure && "border-red-500"
+              }`}
+            />
+            {errors.departure && (
+              <p className="text-red-500 text-sm">{errors.departure}</p>
             )}
-            {promo && (
-              <div className="flex gap-3 flex-wrap items-center justify-between w-full max-w-[400px]">
-                <label htmlFor="promoCode" className="w-[30%] md:text-lg">
-                  Promo Code:
-                </label>
-                <input
-                  required
-                  id="promoCode"
-                  aria-label="promoCode"
-                  type="text"
-                  value={bookFlight.promoCode}
-                  onChange={(event) =>
-                    setBookFlight((prevState) => ({
-                      ...prevState,
-                      promoCode: event.target.value.toUpperCase(),
-                    }))
-                  }
-                  className={`bg-transparent border-b px-1 outline-none w-full`}
-                />
-              </div>
-            )}
-            <div className="flex flex-wrap gap-3 items-center justify-between w-full max-w-[400px]">
-              <label htmlFor="passengers" className="w-[30%] md:text-lg">
-                Passenger/s:
-              </label>
-              <input
-                required
-                id="passengers"
-                aria-label="passengers"
-                type="number"
-                inputMode="numeric"
-                value={bookFlight.passengers}
-                onChange={(event) =>
-                  setBookFlight((prevState) => ({
-                    ...prevState,
-                    passengers: event.target.value,
-                  }))
-                }
-                className="bg-transparent border-b p-2 outline-none w-full"
-              />
-            </div>
           </div>
-          {errors && (
-            <div className="bg-red-100 text-red-600 p-2 rounded-md">
-              {errors}
+
+          {bookFlight.type === "Return" && (
+            <div className="w-full">
+              <label htmlFor="Arrival" className="block mb-1 md:text-lg">
+                Arrival:
+              </label>
+              <input
+                id="Arrival"
+                type="date"
+                min={bookFlight.departure}
+                value={bookFlight.arrival}
+                onChange={(e) => updateBookFlight("arrival", e.target.value)}
+                className={`bg-[#040625] text-white border-b-2 p-2 outline-none w-full rounded-md ${
+                  errors.arrival && "border-red-500"
+                }`}
+              />
+              {errors.arrival && (
+                <p className="text-red-500 text-sm">{errors.arrival}</p>
+              )}
             </div>
           )}
-          <div className="flex justify-evenly gap-2">
+
+          {promo && (
+            <div className="w-full">
+              <label htmlFor="Promo" className="block mb-1 md:text-lg">
+                Promo Code:
+              </label>
+              <input
+                id="Promo"
+                type="text"
+                value={bookFlight.promoCode}
+                onChange={(e) =>
+                  updateBookFlight("promoCode", e.target.value.toUpperCase())
+                }
+                className={`bg-transparent border-b-2 p-2 outline-none w-full ${
+                  errors.promoCode && "border-red-500"
+                }`}
+              />
+              {errors.promoCode && (
+                <p className="text-red-500 text-sm">{errors.promoCode}</p>
+              )}
+            </div>
+          )}
+
+          <div className="w-full flex items-center gap-4 flex-wrap">
+            <span className="block mb-1 md:text-lg">Passengers:</span>
+            <div className="flex items-center gap-3 flex-wrap justify-center">
+              <button
+                type="button"
+                aria-label="Decrease passenger count"
+                className="bg-gray-500 text-white px-3 rounded text-xl p-1 hover:bg-gray-600 active:bg-gray-600"
+                onClick={() =>
+                  updateBookFlight(
+                    "passengers",
+                    Math.max(1, bookFlight.passengers - 1)
+                  )
+                }
+              >
+                <BiMinus />
+              </button>
+              <span>{bookFlight.passengers}</span>
+              <button
+                type="button"
+                aria-label="Increase passenger count"
+                className="bg-gray-500 text-white px-3 rounded text-xl p-1 hover:bg-gray-600 active:bg-gray-600"
+                onClick={() =>
+                  updateBookFlight("passengers", bookFlight.passengers + 1)
+                }
+              >
+                <BiPlus />
+              </button>
+            </div>
+          </div>
+
+          <div className="flex gap-2 justify-evenly mt-4 flex-wrap">
             <button
-              onClick={(event) => handlePromo(event)}
-              className="text-[#87b2f1] hover:bg-[#01012c] active:bg-[#01012c] border-2 border-[#87b2f1] rounded p-3 px-8 md:text-lg md:font-bold flex items-center gap-2 w-full"
+              type="button"
+              onClick={() => {
+                setPromo((p) => !p);
+                if (promo) updateBookFlight("promoCode", "");
+              }}
+              className="text-[#87b2f1] border-2 border-[#87b2f1] rounded p-3 px-8 font-bold flex items-center justify-center"
             >
-              <BiPlus /> Add Promo Code
+              {promo ? <BiMinus /> : <BiPlus />}
+              {promo ? "Remove Promo Code" : "Add Promo Code"}
             </button>
+
             <button
-              className={`text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded p-3 px-8 md:text-lg md:font-bold w-full`}
+              type="submit"
+              disabled={loading}
+              className="text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] rounded p-3 px-8 font-bold"
             >
-              Search Flights
+              {loading ? "Searching..." : "Search Flights"}
             </button>
           </div>
         </form>

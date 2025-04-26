@@ -20,6 +20,7 @@ const App = () => {
   // localStorage.clear()
   const [openMenu, setOpenMenu] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [openLogin, setOpenLogin] = useState(false);
   const [openUserInfo, setOpenUserInfo] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
@@ -39,7 +40,7 @@ const App = () => {
     setOpenLogin(true);
     setOpenRegister(false);
     setOpenForgotPassword(false);
-    setErrors("")
+    setErrors("");
   };
 
   const handleOpenRegister = () => {
@@ -85,7 +86,9 @@ const App = () => {
   return (
     <div
       onClick={() => openMenu && setOpenMenu(false)}
-      className="bg-[#01012c] text-white overflow-x-hidden"
+      className={`${
+        darkMode ? "bg-[#0f0801] text-gray-300" : "bg-[#f0ebcb] text-[#040625]"
+      } overflow-x-hidden`}
     >
       <Header
         setOpenUserInfo={setOpenUserInfo}
@@ -94,17 +97,26 @@ const App = () => {
         handleOpenMenu={handleOpenMenu}
         loggedIn={loggedIn}
         handleOpenLogin={handleOpenLogin}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
       />
-      <Hero />
-      <AboutUs />
-      <Book loggedIn={loggedIn} handleOpenLogin={handleOpenLogin} />
-      <Destinations />
-      <Packages />
-      <WhyUs />
-      <Popular />
-      <Types />
-      <Guides />
+      <Hero darkMode={darkMode} />
+      <AboutUs darkMode={darkMode} />
+      <Book
+        darkMode={darkMode}
+        loggedIn={loggedIn}
+        handleOpenLogin={handleOpenLogin}
+        errors={errors}
+        setErrors={setErrors}
+      />
+      <Destinations darkMode={darkMode} />
+      <Packages darkMode={darkMode} />
+      <WhyUs darkMode={darkMode} />
+      <Popular darkMode={darkMode} />
+      <Types darkMode={darkMode} />
+      <Guides darkMode={darkMode} />
       <ContactUs
+        darkMode={darkMode}
         userInfo={userInfo}
         loggedIn={loggedIn}
         errors={errors}
@@ -113,6 +125,7 @@ const App = () => {
       />
       {openLogin && (
         <Login
+          darkMode={darkMode}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           errors={errors}
@@ -125,6 +138,7 @@ const App = () => {
       )}
       {openRegister && (
         <Register
+          darkMode={darkMode}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           errors={errors}
@@ -136,6 +150,7 @@ const App = () => {
       )}
       {openForgotPassword && (
         <ForgotPassowrd
+          darkMode={darkMode}
           errors={errors}
           setErrors={setErrors}
           setOpenLogin={setOpenLogin}
@@ -145,6 +160,7 @@ const App = () => {
       )}
       {openUserInfo && (
         <UserInformation
+          darkMode={darkMode}
           userInfo={userInfo}
           setLoggedIn={setLoggedIn}
           setOpenUserInfo={setOpenUserInfo}

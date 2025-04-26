@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import { motion } from "framer-motion";
-// import emailjs from "emailjs-com";
-const ContactUs = ({
+import  emailjs from "@emailjs/browser";
+const ContactUs = ({darkMode,
   userInfo,
   loggedIn,
   errors,
@@ -11,17 +11,42 @@ const ContactUs = ({
   handleOpenLogin,
 }) => {
   const [message, setMessage] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const templateParams = {
+      user_email: userInfo.email,
+      message: message,
+    };
+
+    if(message === "") {
+      return setErrors("Type a message!")
+    } else {
+      emailjs
+        .send(
+          "YOUR_SERVICE_ID",
+          "YOUR_TEMPLATE_ID",
+          templateParams,
+          "YOUR_PUBLIC_KEY"
+        )
+        .then((response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          // Optionally clear the form or show a success message
+        })
+        .catch((err) => {
+          setErrors("FAILED...");
+          console.error("FAILED...", err);
+          // Optionally show an error message
+        });
+    }
   };
 
   return (
     <div
       id="contact"
-      className="flex items-center justify-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 flex-col"
+      className="flex items-center justify-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 flex-col text-gray-500"
     >
-      <Title first="Contact" second="Us" />
+      <Title darkMode={darkMode} first="Contact" second="Us" />
       <motion.form
         whileInView={{ opacity: 50, x: 0 }}
         initial={{ opacity: 0, x: -50 }}
@@ -29,17 +54,17 @@ const ContactUs = ({
         onSubmit={loggedIn ? handleSubmit : (event) => handleOpenLogin(event)}
         className="w-full p-6 rounded-lg flex flex-col gap-6 md:text-lg font-semibold max-w-[700px] shadow-lg"
       >
-        <label htmlFor="email" className="sr-only">
+        <label htmlFor="contactEmail" className="sr-only">
           Email Address
         </label>
         <input
-          id="email"
+          id="contactEmail"
           type="email"
           aria-label="Email Address"
           value={userInfo.email}
           readOnly
           placeholder="Your Email Address"
-          className="bg-transparent p-4 w-full rounded-md border-2 border-gray-300"
+          className="p-4 w-full rounded-md border-2 border-gray-300"
         />
         <label htmlFor="text" className="sr-only">
           Message
@@ -50,7 +75,7 @@ const ContactUs = ({
           aria-label="Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="h-[200px] p-4 w-full rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#87b2f1] transition duration-300 ease-in-out"
+          className="h-[200px] p-4 w-full rounded-md border-2 border-gray-300 transition duration-300 ease-in-out outline-none"
           placeholder="Write your message here..."
         ></textarea>
         {errors && (

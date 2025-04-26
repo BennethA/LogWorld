@@ -12,23 +12,26 @@ import Title from "./Title";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Modal Component
-const Modal = ({ selectedPackage, onClose }) => (
+const Modal = ({ selectedPackage, onClose, darkMode }) => (
   <AnimatePresence>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-white/10 backdrop-blur-lg flex items-center justify-center"
+      className={`fixed z-[100] top-0 left-0 right-0 flex items-center justify-center backdrop-blur-md `}
     >
       <motion.div
         initial={{ scale: 0.9 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.9 }}
-        className="bg-white p-6 rounded-lg max-w-md w-full relative"
+        className={`text-center max-w-[400px] p-8 rounded-lg w-full h-screen shadow-lg flex items-center flex-col overflow-y-auto relative ${
+          darkMode ? "bg-[#100C08]" : "bg-white"
+        }`}
       >
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-[1px] right-2 text-2xl font-bold text-black"
+          className="absolute top-[1px] right-2 text-2xl font-bold text-gray-400"
         >
           &times;
         </button>
@@ -58,7 +61,7 @@ const Modal = ({ selectedPackage, onClose }) => (
   </AnimatePresence>
 );
 
-const Packages = () => {
+const Packages = ({ darkMode }) => {
   const [selectedPackage, setSelectedPackage] = useState(null);
 
   const packages = [
@@ -119,18 +122,17 @@ const Packages = () => {
       price: "4,000",
     },
   ];
-    useEffect(() => {
-      if (selectedPackage) {
-        document.body.style.overflow = "hidden"; // Disable scrolling
-      } else {
-        document.body.style.overflow = "auto"; // Re-enable scrolling
-      }
-      // Clean up: Ensure scroll is re-enabled if component unmounts or models closes
-      return () => {
-        document.body.style.overflow = "auto";
-      };
-    }, [selectedPackage]);
-
+  useEffect(() => {
+    if (selectedPackage) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+    // Clean up: Ensure scroll is re-enabled if component unmounts or models closes
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedPackage]);
 
   return (
     <div
@@ -138,6 +140,7 @@ const Packages = () => {
       className="flex items-center justify-center flex-col gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8"
     >
       <Title
+        darkMode={darkMode}
         first="All-Inclusive"
         second="Packages"
         description="Explore all-inclusive packages that turn your travel into a seamless
@@ -152,13 +155,15 @@ const Packages = () => {
         {packages.map((item, index) => (
           <div
             key={index}
-            className="w-[200px] sm:w-[250px] md:w-[300px] hover:bg-[#000020] active:bg-[#000020] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded shadow-black flex flex-col"
+            className={`w-[200px] sm:w-[250px] md:w-[300px] overflow-hidden flex-shrink-0 gap-5 p-2 shadow-xl rounded ${
+              darkMode ? "shadow-black" : "bg-gray-200 shadow-gray-300"
+            } flex flex-col`}
           >
-            <div className="flex items-center object-cover h-[150px] sm:h-[180px]">
+            <div className="flex items-center object-cover h-[150px] sm:h-[180px] overflow-hidden rounded">
               <img
                 src={item.img}
                 alt={item.title}
-                className="w-full object-cover h-full rounded hover:scale-95 active:scale-95 transition-transform duration-300"
+                className="w-full object-cover h-full hover:scale-150 active:scale-150 transition-transform duration-300"
               />
             </div>
             <div className="flex flex-col gap-3">
@@ -168,16 +173,19 @@ const Packages = () => {
                   <BsStarFill className="text-[#87b2f1]" /> {item.rate}
                 </p>
               </div>
-              <p className="text-gray-400">{item.subtitle}</p>
-              <div className="flex items-center md:text-lg">
-                <s className="text-gray-400 mr-2">${item.discount}</s>
-                <p>
-                  ${item.price}
-                  <span className="text-sm text-gray-400"> per person</span>
-                </p>
-              </div>
+              <span className={`flex flex-col gap-3 `}>
+                <p>{item.subtitle}</p>
+                <div className="flex items-center md:text-lg">
+                  <s className="mr-2">${item.discount}</s>
+                  <p>
+                    ${item.price}
+                    <span className="text-sm text-gray-400"> per person</span>
+                  </p>
+                </div>
+              </span>
             </div>
             <button
+            type="button"
               onClick={() => setSelectedPackage(item)} // Set clicked package to the state
               className="text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] w-full p-3 rounded md:text-lg md:font-bold"
             >
@@ -190,6 +198,7 @@ const Packages = () => {
       {/* Modal: Only show when a package is selected */}
       {selectedPackage && (
         <Modal
+          darkMode={darkMode}
           selectedPackage={selectedPackage}
           onClose={() => setSelectedPackage(null)} // Close modal
         />

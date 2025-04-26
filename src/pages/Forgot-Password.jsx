@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Title from "../components/Title";
 import { BiX } from "react-icons/bi";
 
-export default function ForgotPassword({
+export default function ForgotPassword({darkMode,
   errors,
   setErrors,
   handleOpenLogin,
@@ -58,7 +58,7 @@ export default function ForgotPassword({
 
   return (
     <main className="fixed z-[100] top-[60px] left-0 right-0 flex items-center justify-center backdrop-blur-md">
-      <div className="text-center max-w-[400px] p-8 rounded-lg bg-[#000020c9] w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto sm:w-[500px] relative">
+      <div className="text-center max-w-[400px] p-8 rounded-lg w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto sm:w-[500px] relative">
         <BiX
           onClick={() => {
             setErrors("");
@@ -66,18 +66,18 @@ export default function ForgotPassword({
           }}
           className="text-4xl hover:opacity-80 absolute top-1 right-1 cursor-pointer"
         />
-        <Title first="Reset" second="Password!" />
+        <Title darkMode={darkMode} first="Reset" second="Password!" />
         <form
           onSubmit={handleChangePassword}
           className="flex flex-col gap-3 w-full"
         >
           <div className="flex flex-col gap-4 items-center justify-center">
-            <label htmlFor="email" className="sr-only">
+            <label htmlFor="forgotEmail" className="sr-only">
               Email Address
             </label>
             <input
               required
-              id="email"
+              id="forgotEmail"
               type="email"
               aria-label="Email Address"
               value={formData.email}

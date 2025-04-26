@@ -1,5 +1,8 @@
-/* eslint-disable no-unused-vars */
+import "swiper/css";
 import React from "react";
+import Title from "./Title";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 import tour1 from "../assets/images/tour1.jpg";
 import tour2 from "../assets/images/tour2.jpg";
 import tour3 from "../assets/images/tour3.jpg";
@@ -10,47 +13,63 @@ import tour7 from "../assets/images/tour7.jpg";
 import tour8 from "../assets/images/tour8.jpg";
 import tour9 from "../assets/images/tour9.jpg";
 import tour10 from "../assets/images/tour10.jpg";
-import Title from "./Title";
-import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-const Destinations = () => {
-  const places = [
-    tour1,
-    tour2,
-    tour3,
-    tour4,
-    tour5,
-    tour6,
-    tour7,
-    tour8,
-    tour9,
-    tour10,
-  ];
+const destinations = [
+  { src: tour1, alt: "Beach Paradise" },
+  { src: tour2, alt: "Mountain Retreat" },
+  { src: tour3, alt: "Urban Adventure" },
+  { src: tour4, alt: "Safari Journey" },
+  { src: tour5, alt: "Desert Escape" },
+  { src: tour6, alt: "Island Life" },
+  { src: tour7, alt: "Winter Wonderland" },
+  { src: tour8, alt: "Historic City" },
+  { src: tour9, alt: "Tropical Getaway" },
+  { src: tour10, alt: "Cultural Tour" },
+];
 
+const Destinations = ({ darkMode }) => {
   return (
-    <div className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8 bg-[#000020] flex-col gap-5">
+    <section className="flex items-center justify-center gap-5 px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 flex-col">
       <Title
-        first="Popular"
+        darkMode={darkMode}
+        first="Explore "
         second="Destinations"
-        description="Filled with exciting experiences and activities, the world has something for every traveler. Discover amazing deals on city tours, desert adventures, water sports, amusement parks, and refreshing wellness retreats."
+        description="Discover beautiful places across the globe with curated experiences
+          just for you."
       />
-      <motion.div
-        whileInView={{ opacity: 50, y: 0 }}
-        initial={{ opacity: 0, y: 50 }}
-        transition={{ duration: 1 }}
-        className="flex overflow-x-auto"
+
+      <Swiper
+        modules={[Autoplay]}
+        loop={true}
+        spaceBetween={16}
+        autoplay={{
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        speed={3000}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 1.5 },
+          768: { slidesPerView: 2.5 },
+          1024: { slidesPerView: 3.5 },
+        }}
+        className="w-full"
       >
-        {places.map((place, index) => (
-          <img
-            key={index}
-            src={place}
-            loading="lazy"
-            alt={`destination-${index}`}
-            className="rounded-lg m-2 h-[300px] w-[350px] sm:h-[350px] md:h-[400px] lg:h-[450px] hover:scale-105 active:scale-100 cursor-pointer transition-transform duration-300 ease-in-out transform scale-95 object-cover"
-          />
+        {destinations.map((dest, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={dest.src}
+                alt={dest.alt}
+                className="w-full h-[400px] object-cover group-hover:scale-150 transition-transform duration-500"
+              />
+            </div>
+          </SwiperSlide>
         ))}
-      </motion.div>
-    </div>
+      </Swiper>
+    </section>
   );
 };
 

@@ -1,9 +1,11 @@
 import React from "react";
 import { BiMenu, BiUser, BiX } from "react-icons/bi";
 import { CiPlane } from "react-icons/ci";
-import { FaUserCheck } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserCheck } from "react-icons/fa";
 
 const Header = ({
+  setDarkMode,
+  darkMode,
   openMenu,
   handleOpenMenu,
   loggedIn,
@@ -18,7 +20,9 @@ const Header = ({
   ];
 
   return (
-    <div className="flex justify-between items-center font-bold fixed z-20 w-full top-0 h-[60px] px-[3%] md:px-[5%] lg:px-[8%] backdrop-blur-lg border-b border-white/20">
+    <div
+      className={`flex justify-between items-center font-bold fixed z-20 w-full top-0 h-[60px] px-[3%] md:px-[5%] lg:px-[8%] backdrop-blur-lg border-b border-white/20`}
+    >
       <a
         href="#home"
         className="flex font-extrabold text-[#87b2f1] text-xl md:text-2xl items-center font-serif relative overflow-hidden"
@@ -28,11 +32,15 @@ const Header = ({
       </a>
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex gap-1">
+      <nav className="hidden md:flex">
         {pages.map((page, index) => (
           <a
             href={page.link}
-            className="hover:bg-[#15152c41] active:bg-[#15152c41] p-2 rounded-md md:text-lg"
+            className={`p-2 rounded-md md:text-lg ${
+              darkMode
+                ? "hover:bg-[#32335a] active:bg-[#32335a]"
+                : "hover:bg-[#15152c15] active:bg-[#15152c15] "
+            }`}
             key={index}
           >
             {page.title}
@@ -41,38 +49,47 @@ const Header = ({
       </nav>
 
       {/* Mobile Menu Toggle Button */}
-      <div className={`md:hidden flex items-center gap-4 cursor-pointer`}>
-        {loggedIn ? (
-          <FaUserCheck
-            onClick={() => setOpenUserInfo(true)}
-            className="hover:bg-[#15152c41] active:bg-[#15152c41] text-2xl p-1 rounded-full"
-          />
-        ) : (
-          <BiUser
-            onClick={handleOpenLogin}
-            className="hover:opacity-80 text-xl"
-          />
-        )}
-        <div onClick={handleOpenMenu}>
-          {openMenu ? (
-            <BiX className="text-3xl hover:opacity-80" />
+      <div className={`text-[17px] md:hidden flex items-center gap-1`}>
+        <div className="cursor-pointer hover:bg-[#ebebebdc] active:bg-[#ebebebdc] hover:text-black p-1 rounded-full">
+          {loggedIn ? (
+            <FaUserCheck onClick={() => setOpenUserInfo(true)} />
           ) : (
-            <BiMenu className="text-3xl hover:opacity-80" />
+            <BiUser onClick={handleOpenLogin} />
           )}
+        </div>
+        <div
+          onClick={() => setDarkMode(!darkMode)}
+          className={`cursor-pointer p-1 rounded-full hover:bg-[#ebebebdc] active:bg-[#ebebebdc]`}
+        >
+          {darkMode ? (
+            <FaSun className="text-white" />
+          ) : (
+            <FaMoon className="text-gray-800" />
+          )}
+        </div>
+        <div
+          onClick={handleOpenMenu}
+          className="text-3xl hover:opacity-80 cursor-pointer"
+        >
+          {openMenu ? <BiX /> : <BiMenu />}
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
-        className={`fixed inset-0 top-[60px] flex md:hidden flex-col bg-[#08082cf3] border-r border-white/20 h-screen overflow-y-auto w-[50%] sm:px-6 p-4 gap-3 mb-3 transition-all duration-500 z-30 ${
+        className={`fixed inset-0 top-[60px] flex md:hidden flex-col border-r backdrop-blur-lg border-white/20 h-screen overflow-y-auto w-[50%] sm:px-6 p-4 gap-3 mb-3 transition-all duration-500 z-30 ${
           openMenu ? "translate-x-[0%]" : "translate-x-[-100%]"
-        }`}
+        } ${darkMode ? "bg-[#09091bfb]" : "bg-[#f3f3f3]"}`}
       >
         {pages.map((page, index) => (
           <a
             onClick={handleOpenMenu}
             href={page.link}
-            className="flex p-3 hover:bg-[#15152c41] active:bg-[#15152c41] text-lg font-bold rounded"
+            className={`flex p-3 text-lg font-bold rounded ${
+              darkMode
+                ? "hover:bg-[#32335a] active:bg-[#32335a]"
+                : "hover:bg-[#15152c15] active:bg-[#15152c15] "
+            }`}
             key={index}
           >
             {page.title}
@@ -89,18 +106,24 @@ const Header = ({
       </div>
 
       {/* Desktop Contact Button */}
-      <div className="md:flex hidden gap-3 items-center">
-        {loggedIn ? (
-          <FaUserCheck
-            onClick={() => setOpenUserInfo(true)}
-            className="hover:opacity-80 text-white text-2xl p-1 rounded-full cursor-pointer"
-          />
-        ) : (
-          <BiUser
-            onClick={handleOpenLogin}
-            className="hover:opacity-80 text-xl cursor-pointer"
-          />
-        )}
+      <div className="text-[17px] md:flex hidden gap-1 items-center">
+        <div className="cursor-pointer hover:bg-[#ebebebdc] active:bg-[#ebebebdc] hover:text-black p-1 rounded-full">
+          {loggedIn ? (
+            <FaUserCheck onClick={() => setOpenUserInfo(true)} />
+          ) : (
+            <BiUser onClick={handleOpenLogin} />
+          )}
+        </div>
+        <div
+          onClick={() => setDarkMode(!darkMode)}
+          className={`cursor-pointer p-1 rounded-full hover:bg-[#ebebebdc] active:bg-[#ebebebdc]`}
+        >
+          {darkMode ? (
+            <FaSun className="text-white" />
+          ) : (
+            <FaMoon className="text-gray-800" />
+          )}
+        </div>
         <a
           href="#contact"
           className="p-3 text-white bg-gradient-to-r from-[#0d0d77] to-[#4d034d] hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] rounded italic text-lg font-bold transition-all z-10 cursor-pointer"

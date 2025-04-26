@@ -3,7 +3,7 @@ import React from "react";
 import Title from "./Title";
 import { motion } from "framer-motion";
 
-const AboutUs = () => {
+const AboutUs = ({ darkMode }) => {
   const aboutUs = [
     {
       title: "Our Mission",
@@ -25,9 +25,10 @@ const AboutUs = () => {
   return (
     <div
       id="about"
-      className="flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 bg-[#000020] flex-col gap-5"
+      className={`flex items-center justify-center px-[5%] md:px-[7%] lg:px-[10%] pt-16 pb-8 flex-col gap-5`}
     >
       <Title
+        darkMode={darkMode}
         first="About"
         second="Us"
         description="At our company, we are driven by a passion to help businesses thrive. Our expert team provides top-tier services that deliver tangible results and foster long-term success."
@@ -39,12 +40,12 @@ const AboutUs = () => {
             whileInView={{ opacity: 50, x: 0 }}
             initial={{ opacity: 0, x: -50 }}
             transition={{ duration: 1 }}
-            className="w-full sm:w-1/2 lg:w-1/3 mb-6 md:mb-0"
+            className={`w-full sm:w-1/2 lg:w-1/3 mb-6 md:mb-0`}
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-white">
+            <h2 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 `}>
               {about.title}
             </h2>
-            <p className="text-gray-400 leading-6">{about.description}</p>
+            <p className={`leading-6`}>{about.description}</p>
           </motion.div>
         ))}
       </div>

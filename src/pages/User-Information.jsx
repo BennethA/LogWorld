@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import { BiX } from "react-icons/bi";
 
 export default function UserInformation({
+  darkMode,
   userInfo,
   setLoggedIn,
   setOpenUserInfo,
@@ -11,12 +12,12 @@ export default function UserInformation({
     <div
       className={`fixed z-[100] top-[60px] left-0 right-0 flex items-center justify-center backdrop-blur-md flex-col`}
     >
-      <div className="text-center max-w-[400px] p-8 rounded-lg bg-[#000020c9] w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto gap-4 relative">
+      <div className="text-center max-w-[400px] p-8 rounded-lg w-full h-screen md:backdrop-blur-lg shadow-lg flex items-center flex-col overflow-y-auto gap-4 relative">
         <BiX
           onClick={() => setOpenUserInfo(false)}
           className="text-4xl hover:opacity-80 absolute top-1 right-1 cursor-pointer"
         />
-        <Title text1="USER" text2="INFORMATION" />
+        <Title darkMode={darkMode} text1="USER" text2="INFORMATION" />
 
         <div className="flex flex-col gap-2 items-start">
           <div className="p-2">Name: {userInfo.name}</div>

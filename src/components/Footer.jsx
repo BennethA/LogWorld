@@ -41,7 +41,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-5 bg-[#000020] px-[3%] md:px-[5%] lg:px-[8%] py-8">
+    <div className="flex flex-col gap-5 px-[3%] md:px-[5%] lg:px-[8%] py-8">
       <motion.div
         whileInView={{ opacity: 10, y: 0 }}
         initial={{ opacity: 0, y: -50 }}
@@ -66,14 +66,14 @@ const Footer = () => {
         <div className="flex flex-wrap gap-6 justify-between max-w-[800px] mx-auto">
           {/* About Us Section */}
           <div>
-            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+            <h2 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
               About Us
-            </h3>
+            </h2>
             {aboutUs.map((about, index) => (
               <a
                 href={about.link}
                 key={index}
-                className="text-gray-400 flex cursor-pointer hover:text-[#87b2f1] md:text-lg font-medium"
+                className="text-gray-500 flex cursor-pointer hover:text-[#87b2f1] md:text-lg font-medium"
               >
                 {about.title}
               </a>
@@ -82,14 +82,14 @@ const Footer = () => {
 
           {/* Locate Us Section */}
           <div>
-            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+            <h2 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
               Locate Us
-            </h3>
+            </h2>
             {locateUs.map((locate, index) => (
               <a
                 href={locate.link}
                 key={index}
-                className="text-gray-400 flex cursor-pointer hover:text-[#87b2f1] md:text-lg font-medium"
+                className="text-gray-500 flex cursor-pointer hover:text-[#87b2f1] md:text-lg font-medium"
               >
                 {locate.name}
               </a>
@@ -98,15 +98,16 @@ const Footer = () => {
 
           {/* Reach Us Section */}
           <div>
-            <h3 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
+            <h2 className="text-[#87b2f1] font-extrabold text-lg md:text-xl">
               Reach Us
-            </h3>
+            </h2>
             <div className="flex gap-2 flex-wrap">
               {reachUs.map((reach, index) => (
                 <a
                   href={reach.link}
+                  aria-label={`Link to ${reach.link}`}
                   key={index}
-                  className="hover:opacity-80 md:text-lg rounded-full p-2 text-white bg-gradient-to-r  hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] "
+                  className="hover:opacity-80 md:text-lg rounded-full p-2 text-gray-500 hover:text-white bg-gradient-to-r  hover:from-[#2727bd] hover:to-[#910f91] active:from-[#2727bd] active:to-[#910f91] "
                 >
                   {reach.icon}
                 </a>

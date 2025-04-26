@@ -7,7 +7,7 @@ import world from "../assets/images/world.png";
 import Title from "./Title";
 import { motion } from "framer-motion";
 
-const WhyUs = () => {
+const WhyUs = ({ darkMode }) => {
   const reasons = [
     {
       icon: <CiPlane />,
@@ -38,7 +38,7 @@ const WhyUs = () => {
   return (
     <div
       id="whyUs"
-      className="flex items-center sm:justify-between gap-6 flex-wrap bg-[#000020] justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8"
+      className="flex items-center sm:justify-between gap-6 flex-wrap justify-center px-[5%] md:px-[7%] lg:px-[10%]  pt-16 pb-8"
     >
       <motion.div
         whileInView={{ opacity: 10, x: 0 }}
@@ -55,27 +55,33 @@ const WhyUs = () => {
       </motion.div>
       <div className="sm:w-[45%] lg:w-[50%] text-center flex flex-col gap-5 items-center">
         <Title
+          darkMode={darkMode}
           second="Why Choose Us"
           description="Discover unique and affordable travel experiences at every destination with us."
         />
         <motion.div
-        whileInView={{ opacity: 10, x: 0 }}
-        initial={{ opacity: 0, x: 50 }}
-        transition={{ duration: 1 }}
-        className="flex gap-4 flex-col">
+          whileInView={{ opacity: 10, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          transition={{ duration: 1 }}
+          className="flex gap-4 flex-col"
+        >
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="flex gap-4 items-center bg-[#000020] transition-colors duration-200 flex-wrap"
+              className={`flex gap-4 items-center p-1 rounded-sm border-[#8080804f] border ${
+                darkMode
+                  ? "bg-[#04040ea2]"
+                  : "bg-gray-300"
+              } flex-wrap`}
             >
               <div className="bg-white p-3 text-3xl text-black rounded-full transition-all duration-300">
                 {reason.icon}
               </div>
               <div>
-                <h4 className="font-semibold text-lg text-left text-white">
+                <h2 className={`font-semibold text-lg text-left`}>
                   {reason.title}
-                </h4>
-                <p className="text-gray-400 text-sm text-left text-wrap md:text-base">
+                </h2>
+                <p className={`text-sm text-left text-wrap md:text-base`}>
                   {reason.description}
                 </p>
               </div>
