@@ -371,7 +371,7 @@ const Book = ({ loggedIn, handleOpenLogin, darkMode }) => {
                 setPromo((p) => !p);
                 if (promo) updateBookFlight("promoCode", "");
               }}
-              className="text-[#87b2f1] border-2 border-[#87b2f1] rounded p-3 px-8 font-bold flex items-center justify-center"
+              className="text-[#87b2f1] border-2 border-[#87b2f1] rounded p-3 px-8 font-bold flex items-center justify-center gap-1"
             >
               {promo ? <BiMinus /> : <BiPlus />}
               {promo ? "Remove Promo Code" : "Add Promo Code"}

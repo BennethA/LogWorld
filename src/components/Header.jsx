@@ -38,8 +38,8 @@ const Header = ({
             href={page.link}
             className={`p-2 rounded-md md:text-lg ${
               darkMode
-                ? "hover:bg-[#32335a] active:bg-[#32335a]"
-                : "hover:bg-[#15152c15] active:bg-[#15152c15] "
+                ? "hover:bg-[#32335acb] active:bg-[#32335acb]"
+                : "hover:bg-[#ffffff05] active:bg-[#ffffff05] "
             }`}
             key={index}
           >
@@ -79,7 +79,11 @@ const Header = ({
       <div
         className={`fixed inset-0 top-[60px] flex md:hidden flex-col border-r backdrop-blur-lg border-white/20 h-screen overflow-y-auto w-[50%] sm:px-6 p-4 gap-3 mb-3 transition-all duration-500 z-30 ${
           openMenu ? "translate-x-[0%]" : "translate-x-[-100%]"
-        } ${darkMode ? "bg-[#09091bfb]" : "bg-[#f3f3f3]"}`}
+        } ${
+          darkMode
+            ? "bg-[#0f0801c9] text-gray-300"
+            : "bg-[#f0ebcbe0] text-[#040625]"
+        }`}
       >
         {pages.map((page, index) => (
           <a

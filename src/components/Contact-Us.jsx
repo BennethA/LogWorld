@@ -64,7 +64,7 @@ const ContactUs = ({darkMode,
           value={userInfo.email}
           readOnly
           placeholder="Your Email Address"
-          className="p-4 w-full rounded-md border-2 border-gray-300"
+          className="p-4 w-full rounded-md border-2 border-gray-300 outline-none"
         />
         <label htmlFor="text" className="sr-only">
           Message
