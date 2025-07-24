@@ -15,6 +15,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassowrd from "./pages/Forgot-Password";
 import UserInformation from "./pages/User-Information";
+import { GiAmpleDress, GiSewingMachine, GiSewingNeedle, GiSewingString, GiShirtButton } from "react-icons/gi";
+import { PiCoatHanger, PiCoatHangerBold, PiNeedleLight } from "react-icons/pi";
+import { LuShirt } from "react-icons/lu";
+
 
 const App = () => {
   // localStorage.clear()
@@ -90,6 +94,7 @@ const App = () => {
         darkMode ? "bg-[#0f0801] text-gray-300" : "bg-[#f0ebcb] text-[#040625]"
       } overflow-x-hidden`}
     >
+
       <Header
         setOpenUserInfo={setOpenUserInfo}
         openMenu={openMenu}
@@ -172,3 +177,20 @@ const App = () => {
 };
 
 export default App;
+
+// import html2canvas from "html2canvas";
+
+// const printComponent = () => {
+//   const element = document.getElementById("print-section");
+//   html2canvas(element).then((canvas) => {
+//     const imgData = canvas.toDataURL("image/png");
+//     const win = window.open();
+//     win.document.write('<img src="' + imgData + '" />');
+//     win.document.close();
+//     win.focus();
+//     win.print();
+//     win.close();
+//   });
+// };
+// <div id="print-section">{/* your styled component */}</div>;
+// <button onClick={printComponent}>Print Design</button>;
